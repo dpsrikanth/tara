@@ -1,0 +1,99 @@
+<% include ../partials/header %>
+<style>
+    table td, table th {
+    word-break: break-all;
+}
+</style>
+<div class="container mb-5 mt-3" >
+    <div style="display: none;" id="custom-users-modal-wrapper">
+        <div class="custom-users-modal">
+            <h5 style="text-align: center;">Please mention your reason.</h5>
+            <input placeholder="Enter" ></input>
+            <div>
+                <button onclick="closeModal()">Cancel</button>
+                <button onclick="closeModal()">Confirm</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="my-5 font-weight-normal text-center"><i class="fas fa-users"></i> Users</h1>
+            <% if(users && users.length > 0) { %>
+            <table class="table table-striped table-bordered table-hover m-0 p-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="white-space: nowrap;" scope="col"  width="4%">#</th>
+                        <th  style="white-space: nowrap;" scope="col">Username</th>
+                        <th style="white-space: nowrap;" scope="col">Name</th>
+                        <th style="white-space: nowrap;" scope="col">Surname</th>
+                        <th style="white-space: nowrap;" scope="col" width="12%">Email</th>
+                        <th style="white-space: nowrap;" scope="col"  width="10%">Phone No.</th>
+                        <th style="white-space: nowrap;" scope="col">Company Name</th>
+                        <th style="white-space: nowrap;" scope="col" width="10%">Status</th>
+                        <th style="white-space: nowrap;" scope="col" width="12%">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i = 0; i < users.length; i++) { %>
+                    <tr>
+                        <th scope="row"><%=i+1%></th>
+                        <td><a href="/users/<%=users[i]._id%>"><%=users[i].username%></a></td>
+                        <td><%=users[i].firstname%></td>
+                        <td><%=users[i].lastname%></td>
+                        <td style="white-space: pre-wrap;"><a href="mailto:<%=users[i].email%>" class="btn btn-link"><%=users[i].email%></a></td>
+                        <td><%=users[i].phone%></td>
+                        <td><a href=" <%=users[i].website%>"><%=users[i].companyName%></a></td>
+                        <!-- <td><%=users[i].status%></td> -->
+                        
+                            <% if(users[i].status === "pending" && currentUser.isAdmin){ %> 
+                                <!-- <td style="white-space: nowrap;">
+                                <button id= "<%=users[i]._id + 'approve'%>"
+                                     style="background-color: rgb(185, 38, 38);margin-right: 10px;"
+                                     class="approve-button">Approve</button>
+                            <button id= "<%=users[i]._id + 'reject'%>"
+                                onclick="openUsersModal(this.id)"
+                                 style="background-color: rgb(27, 136, 43);" class="approve-button">Reject</button>
+                        </td> -->
+                        <td >
+                      <div class="user-dropdown-static">
+                          <p style="margin: 0;">All <img style="height: 15px;" width="17px" src="https://img.icons8.com/material-sharp/48/ffffff/sort-down.png"/></p>
+                          <ul class="user-dropdown-wrapper">
+                              <li>All</li>
+                              <li>Pending</li>
+                              <li>Approve</li>
+                              <li onclick="openUsersModal(this.id)">Reject</li>
+                          </ul>
+                      </div>
+                        </td>
+                            <% } else { %> 
+                                <td>
+                                    
+                                    <div class="user-dropdown-static">
+                                        <p style="margin: 0;">All<img style="height: 15px;" width="17px" src="https://img.icons8.com/material-sharp/48/ffffff/sort-down.png"/></p>
+                                        <ul class="user-dropdown-wrapper">
+                                            <li>All</li>
+                                            <li><%=users[i]?.status?.toUpperCase()%></li>
+              
+                                        </ul>
+                                    </div></td>
+                                <% } %> 
+
+                        <!-- <td style="white-space: nowrap;">
+                            <button style="background-color: rgb(185, 38, 38);margin-right: 10px;" class="approve-button">Approve</button>
+                            <button style="background-color: rgb(27, 136, 43);" class="approve-button">Reject</button></td> -->
+                    <td style="white-space: nowrap;display: flex; justify-content: space-evenly;">
+                        <button style="padding: 8px;border: 1px solid #e5e5e5;background-color: #ffffff;"><img style="height: 20px; width: 20px;" src="https://img.icons8.com/ios-glyphs/30/47c965/edit--v1.png"/></button>
+                   <button style="padding: 8px;border: 1px solid #e5e5e5;background-color: #ffffff;"><img style="height: 20px; width: 20px;" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/e82e2e/external-delete-miscellaneous-kiranshastry-solid-kiranshastry.png"/></button>
+                    </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <% } else { %>
+            <h3 class="text-center">No registered users found</h3>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

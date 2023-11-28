@@ -1,0 +1,110 @@
+<% include partials/header %>
+  <style>
+    .parallax {
+      position: relative;
+      z-index: 1;
+      height: 300px;
+      -webkit-box-shadow: inset 0px -6px 5px rgba(50, 50, 50, 0.75);
+      -moz-box-shadow: inset 0px -6px 5px rgba(50, 50, 50, 0.75);
+      box-shadow: inset 0px -6px 5px rgba(50, 50, 50, 0.75);
+    }
+
+    #trans1 {
+      background: url(../images/slide08.jpg) no-repeat;
+      /*height:575px;*/
+      background-position: center top;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    #trans2 {
+      background: url(../images/slide02.jpg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    #trans3 {
+      background: url(../images/slide01.jpg) no-repeat top center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    .txt {
+      background: rgba(0, 0, 0, 0.7);
+      color: #ccc;
+      width: 100%;
+      height: 100%;
+    }
+
+    .txt h2 {
+      text-align: center;
+      color: #FFF;
+      line-height: 6;
+      font-size: 50px;
+      letter-spacing: 10px;
+    }
+
+    /*.txt.right { margin: 150px 100px 0 0; float: right; text-align: right; }
+.txt.left { float: left; text-align: left; margin: 150px 0 0 100px; }
+.txt.sub { font-size: 50px; line-height: 175%; font-weight: lighter; letter-spacing: 1.5px; background: #000; background: rgba(0,0,0,0.60); font-size: 25px; color: #ccc; margin: 0 100px 0 100px; }*/
+
+
+    /*.content1 h2 { padding:0 25px; }
+.content1 p { padding:0 50px; }*/
+  </style>
+  <main role="main">
+
+    <!--<div><img src="/ui/images/default/banner.png" class="img-fluid" alt="Responsive image"></div>-->
+
+    <div class="container-fluid marketing p-0">
+      <div class="parallax" id="trans1">
+        <div class="txt">
+          <h2> MEMSA </h2>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+      <div class="container">
+        <div class="content1">
+          <p><b>Mining Equipment Manufacturers of South Africa (MEMSA)</b> is an industry cluster organisation. Members'
+            products range from mechanised mining machines, to mining consumables, and IT products. MEMSA currently has
+            over 50 members, including large established OEMs, as well as emerging, small and medium-sized businesses.
+          </p>
+          <p>MEMSA works closely with public and private sector partners including the Mandela Mining Precinct, to
+            promote the development of the South African mining supply chain.</p>
+          <p>It is their vision to position South African mining capital goods, components & product manufacturers as a
+            cost competitive, innovative and transformative industrial cluster, and preferred suppliers, locally and
+            globally. MEMSA supports its members through access to markets, technology development partnerships,
+            information sharing, and reducing the cost of doing business.</p>
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="container">
+      <div class="customer-logos slider d-flex">
+        <div class="slide"><img src="images/logos/CSIR.jpg"></div>
+        <div class="slide"><img src="images/logos/Mining-Equipment-Manufacturers-of-South-Africa.jpg"></div>
+        <div class="slide"><img src="images/logos/MCSA.jpg"></div>
+        <div class="slide"><img src="images/logos/Coaltech.jpg"></div>
+        <div class="slide"><img src="images/logos/Department-of-Mineral-Resources.jpg"></div>
+        <div class="slide"><img src="images/logos/Department-of-Planning-Monitoring-and-Evaluation.jpg"> </div>
+        <div class="slide"><img src="images/logos/Department-of-Trade-and-Industry.jpg"></div>
+        <div class="slide"><img src="images/logos/Geological-Society-of-South-Africa.jpg"></div>
+        <div class="slide"><img src="images/logos/Science-and-Innovation.jpg"></div>
+        <div class="slide"><img src="images/logos/South-African-Minerals-Processing-Cluster.jpg"></div>
+        <div class="slide"><img src="images/logos/The-Southern-African-Institute-of-Mining-and-Metallurgy.jpg"></div>
+        <div class="slide"><img src="images/logos/University-of-Johannesburg.jpg"></div>
+        <div class="slide"><img src="images/logos/University-of-Pretoria.jpg"></div>
+        <div class="slide"><img src="images/logos/University-of-the-Witwatersrand.jpg"></div>
+      </div>
+    </div>
+  </main>
+  <% include partials/footer%>
+    </hr>

@@ -1,0 +1,106 @@
+<% include ../partials/header %>
+<div class="container">
+<div class="row mb-3 mt-3">
+    <div class="col-md-12">
+        <h4>Specifications of <%=equipment.name%></h4>
+    </div>
+</div>
+
+<div >
+        <form action="/equipment/<%=equipment._id%>/specifications" method="POST">
+            
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                        <label>Attribute</label>
+                <input class="form-control" type=text placeholder="Attribute"
+                    name="specification[name]" required>
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                    <label>Value</label>
+                <input class="form-control" type=text placeholder="Value"
+                    name="specification[value]" required>
+                </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                        <label>Unit of measure</label>
+                <input class="form-control" type=text placeholder="Unit of measure"
+                    name="specification[unit]">
+                </div>
+                </div>
+                </div>
+                <div  class=" mt-3">
+                    <button  class="btn btn-primary" type="submit" id="button-addon2"><i class="fas fa-plus "></i> Save
+                    </button>
+                </div>
+            
+        </form>
+   
+   
+</div>
+
+<br>
+
+<div>
+    <div class="row">
+        <div class="col-md-11  mt-2">
+    <div class="row">
+        <div class="col-md-4">
+            <label>Attribute</label>
+        </div>
+            <div class="col-md-4">
+                <label>Value</label>
+        </div><div class="col-md-3">
+            <label>Unit of measure</label>
+            </div>
+            <div class="col-md-1 mt-1">
+            
+        </div>
+    </div>
+    </div>
+    </div>
+    <%equipment.specifications.forEach(function(specification){%>
+    <div class="row">
+    <div class="col-md-11  mt-2">
+        <form action="/equipment/<%=equipment._id%>/specifications/<%=specification._id%>?_method=PUT" method="POST">
+            <div class="row">
+                <div class="col-md-4">
+                <input class="form-control " type="text" value="<%=specification.name%>"
+                    name="specification[name]" required /></div>
+                    <div class="col-md-4">
+                <input class="form-control " type="text" value="<%=specification.value%>"
+                    name="specification[value]" required />
+                </div><div class="col-md-3">
+                <input class="form-control " type="text" value="<%=specification.unit%>"
+                    name="specification[unit]" />
+                    </div>
+                    <div class="col-md-1 mt-1">
+                    <button class="btn btn-primary" type="submit" id="button-addon2"><i class="far fa-save"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-1 mt-2 d-none d-md-block">
+        <form action="/equipment/<%=equipment._id%>/specifications/<%=specification._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger "><i class="far fa-trash-alt"></i></button>
+        </form>
+    </div>
+    <div class="col-md-1 mt-2 d-block d-md-none text-right">
+        <form action="/equipment/<%=equipment._id%>/specifications/<%=specification._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger "><i class="far fa-trash-alt"></i></button>
+        </form>
+    </div>
+</div>
+    <% }) %>
+    <div class="row">
+    <div class="col-md-12  my-3 mb-5">
+        <a class="btn btn-darkgrey" href="/equipment/<%=equipment._id%>/edit"><i class="fas fa-arrow-circle-left "></i> Back</a>
+    </div>
+</div>
+</div>
+</div>
+
+<% include ../partials/footer %>

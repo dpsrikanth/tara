@@ -1,0 +1,457 @@
+<% include ../partials/header %>
+
+<% if(user){%>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <a href="/approvals/users"><i class="fas fa-arrow-circle-left fa-2x"></i></a>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="h3 mb-3 font-weight-normal"><i class="far fa-id-card fa-2x"></i></h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Account Details : <strong><%=user.firstname%> <%=user.lastname%></strong>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="user-show-username">Username:</label>
+                            <input class="form-control" type="text" id="user-show-username" value="<%=user.username%>"
+                                readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="user-show-status">Status:</label>
+                            <input class="form-control" type="text" id="user-show-status" value="<%=user.status%>"
+                                readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="user-show-firstname">Name:</label>
+                            <input class="form-control" type="text" id="user-show-firstname" value="<%=user.firstname%>"
+                                readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="user-show-lastname">Surname:</label>
+                            <input class="form-control" type="text" id="user-show-lastname" value="<%=user.lastname%>"
+                                readonly>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="user-show-email">Email:</label>
+                            <input class="form-control" type="text" id="user-show-email" value="<%=user.email%>"
+                                readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="user-show-phone">Phone:</label>
+                            <input class="form-control" type="text" id="user-show-phone" value="<%=user.phone%>"
+                                readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-show-company">Company Name:</label>
+                        <input class="form-control" type="text" id="user-show-company" value="<%=user.companyName%>"
+                            readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-show-addressStreet1">Company Address:</label>
+                        <input class="form-control" type="text" id="user-show-addressStreet1"
+                            value="<%=user.address.street1%>" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="user-show-addressStreet2"
+                            value="<%=user.address.street2%>" readonly>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="user-show-addressCity">City:</label>
+                            <input class="form-control" type="text" id="user-show-addressCity"
+                                value="<%=user.address.city%>" readonly>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="user-show-addressProvince">Province:</label>
+                            <input class="form-control" type="text" id="user-show-addressProvince"
+                                value="<%=user.address.province%>" readonly>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="user-show-addressCode">Code:</label>
+                            <input class="form-control" type="text" id="user-show-addressCode"
+                                value="<%=user.address.code%>" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="user-show-website">Website:</label>
+                        <input class="form-control" type="text" id="user-show-website" value="<%=user.website%>"  placeholder="Please provide your web address OR write N/A**"
+                            readonly>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group has-placeholder">
+                                <label for="">Country <span class="required">*</span></label>
+                                <!-- Country names and Country Code -->
+                                <input type="hidden" name="countrycode" id="countrycode" value="<%=user.countrycode%>" readonly/>
+                                <input type="hidden" name="country" id="country" value="<%=user.country%>" readonly/>
+                                <select class="form-select" id="countrydisplay" name="" onchange="javascript:document.getElementById('countrycode').value=document.getElementById('countrydisplay').value;document.getElementById('country').value=$('#countrydisplay  option:selected').text()">
+                                    <option value="" <%=(user.countrycode==='' ) ? "selected" : "" %>>country</option>
+                                <option value="AF" <%=(user.countrycode==='AF' ) ? "selected" : "" %>>Afghanistan</option>
+                                <option value="AX" <%=(user.countrycode==='AX' ) ? "selected" : "" %>>Aland Islands</option>
+                                <option value="AL" <%=(user.countrycode==='AL' ) ? "selected" : "" %>>Albania</option>
+                                <option value="DZ" <%=(user.countrycode==='DZ' ) ? "selected" : "" %>>Algeria</option>
+                                <option value="AS" <%=(user.countrycode==='AS' ) ? "selected" : "" %>>American Samoa</option>
+                                <option value="AD" <%=(user.countrycode==='AD' ) ? "selected" : "" %>>Andorra</option>
+                                <option value="AO" <%=(user.countrycode==='AO' ) ? "selected" : "" %>>Angola</option>
+                                <option value="AI" <%=(user.countrycode==='AI' ) ? "selected" : "" %>>Anguilla</option>
+                                <option value="AQ" <%=(user.countrycode==='AQ' ) ? "selected" : "" %>>Antarctica</option>
+                                <option value="AG" <%=(user.countrycode==='AG' ) ? "selected" : "" %>>Antigua and Barbuda</option>
+                                <option value="AR" <%=(user.countrycode==='AR' ) ? "selected" : "" %>>Argentina</option>
+                                <option value="AM" <%=(user.countrycode==='AM' ) ? "selected" : "" %>>Armenia</option>
+                                <option value="AW" <%=(user.countrycode==='AW' ) ? "selected" : "" %>>Aruba</option>
+                                <option value="AU" <%=(user.countrycode==='AU' ) ? "selected" : "" %>>Australia</option>
+                                <option value="AT" <%=(user.countrycode==='AT' ) ? "selected" : "" %>>Austria</option>
+                                <option value="AZ" <%=(user.countrycode==='AZ' ) ? "selected" : "" %>>Azerbaijan</option>
+                                <option value="BS" <%=(user.countrycode==='BS' ) ? "selected" : "" %>>Bahamas</option>
+                                <option value="BH" <%=(user.countrycode==='BH' ) ? "selected" : "" %>>Bahrain</option>
+                                <option value="BD" <%=(user.countrycode==='BD' ) ? "selected" : "" %>>Bangladesh</option>
+                                <option value="BB" <%=(user.countrycode==='BB' ) ? "selected" : "" %>>Barbados</option>
+                                <option value="BY" <%=(user.countrycode==='BY' ) ? "selected" : "" %>>Belarus</option>
+                                <option value="BE" <%=(user.countrycode==='BE' ) ? "selected" : "" %>>Belgium</option>
+                                <option value="BZ" <%=(user.countrycode==='BZ' ) ? "selected" : "" %>>Belize</option>
+                                <option value="BJ" <%=(user.countrycode==='BJ' ) ? "selected" : "" %>>Benin</option>
+                                <option value="BM" <%=(user.countrycode==='BM' ) ? "selected" : "" %>>Bermuda</option>
+                                <option value="BT" <%=(user.countrycode==='BT' ) ? "selected" : "" %>>Bhutan</option>
+                                <option value="BO" <%=(user.countrycode==='BO' ) ? "selected" : "" %>>Bolivia</option>
+                                <option value="BQ" <%=(user.countrycode==='BQ' ) ? "selected" : "" %>>Bonaire, Sint Eustatius and Saba</option>
+                                <option value="BA" <%=(user.countrycode==='BA' ) ? "selected" : "" %>>Bosnia and Herzegovina</option>
+                                <option value="BW" <%=(user.countrycode==='BW' ) ? "selected" : "" %>>Botswana</option>
+                                <option value="BV" <%=(user.countrycode==='BV' ) ? "selected" : "" %>>Bouvet Island</option>
+                                <option value="BR" <%=(user.countrycode==='BR' ) ? "selected" : "" %>>Brazil</option>
+                                <option value="IO" <%=(user.countrycode==='IO' ) ? "selected" : "" %>>British Indian Ocean Territory</option>
+                                <option value="BN" <%=(user.countrycode==='BN' ) ? "selected" : "" %>>Brunei Darussalam</option>
+                                <option value="BG" <%=(user.countrycode==='BG' ) ? "selected" : "" %>>Bulgaria</option>
+                                <option value="BF" <%=(user.countrycode==='BF' ) ? "selected" : "" %>>Burkina Faso</option>
+                                <option value="BI" <%=(user.countrycode==='BI' ) ? "selected" : "" %>>Burundi</option>
+                                <option value="KH" <%=(user.countrycode==='KH' ) ? "selected" : "" %>>Cambodia</option>
+                                <option value="CM" <%=(user.countrycode==='CM' ) ? "selected" : "" %>>Cameroon</option>
+                                <option value="CA" <%=(user.countrycode==='CA' ) ? "selected" : "" %>>Canada</option>
+                                <option value="CV" <%=(user.countrycode==='CV' ) ? "selected" : "" %>>Cape Verde</option>
+                                <option value="KY" <%=(user.countrycode==='KY' ) ? "selected" : "" %>>Cayman Islands</option>
+                                <option value="CF" <%=(user.countrycode==='CF' ) ? "selected" : "" %>>Central African Republic</option>
+                                <option value="TD" <%=(user.countrycode==='TD' ) ? "selected" : "" %>>Chad</option>
+                                <option value="CL" <%=(user.countrycode==='CL' ) ? "selected" : "" %>>Chile</option>
+                                <option value="CN" <%=(user.countrycode==='CN' ) ? "selected" : "" %>>China</option>
+                                <option value="CX" <%=(user.countrycode==='CX' ) ? "selected" : "" %>>Christmas Island</option>
+                                <option value="CC" <%=(user.countrycode==='CC' ) ? "selected" : "" %>>Cocos (Keeling) Islands</option>
+                                <option value="CO" <%=(user.countrycode==='CO' ) ? "selected" : "" %>>Colombia</option>
+                                <option value="KM" <%=(user.countrycode==='KM' ) ? "selected" : "" %>>Comoros</option>
+                                <option value="CG" <%=(user.countrycode==='CG' ) ? "selected" : "" %>>Congo</option>
+                                <option value="CD" <%=(user.countrycode==='CD' ) ? "selected" : "" %>>Congo, Democratic Republic of the Congo</option>
+                                <option value="CK" <%=(user.countrycode==='CK' ) ? "selected" : "" %>>Cook Islands</option>
+                                <option value="CR" <%=(user.countrycode==='CR' ) ? "selected" : "" %>>Costa Rica</option>
+                                <option value="CI" <%=(user.countrycode==='CI' ) ? "selected" : "" %>>Cote D'Ivoire</option>
+                                <option value="HR" <%=(user.countrycode==='HR' ) ? "selected" : "" %>>Croatia</option>
+                                <option value="CU" <%=(user.countrycode==='CU' ) ? "selected" : "" %>>Cuba</option>
+                                <option value="CW" <%=(user.countrycode==='CW' ) ? "selected" : "" %>>Curacao</option>
+                                <option value="CY" <%=(user.countrycode==='CY' ) ? "selected" : "" %>>Cyprus</option>
+                                <option value="CZ" <%=(user.countrycode==='CZ' ) ? "selected" : "" %>>Czech Republic</option>
+                                <option value="DK" <%=(user.countrycode==='DK' ) ? "selected" : "" %>>Denmark</option>
+                                <option value="DJ" <%=(user.countrycode==='DJ' ) ? "selected" : "" %>>Djibouti</option>
+                                <option value="DM" <%=(user.countrycode==='DM' ) ? "selected" : "" %>>Dominica</option>
+                                <option value="DO" <%=(user.countrycode==='DO' ) ? "selected" : "" %>>Dominican Republic</option>
+                                <option value="EC" <%=(user.countrycode==='EC' ) ? "selected" : "" %>>Ecuador</option>
+                                <option value="EG" <%=(user.countrycode==='EG' ) ? "selected" : "" %>>Egypt</option>
+                                <option value="SV" <%=(user.countrycode==='SV' ) ? "selected" : "" %>>El Salvador</option>
+                                <option value="GQ" <%=(user.countrycode==='GQ' ) ? "selected" : "" %>>Equatorial Guinea</option>
+                                <option value="ER" <%=(user.countrycode==='ER' ) ? "selected" : "" %>>Eritrea</option>
+                                <option value="EE" <%=(user.countrycode==='EE' ) ? "selected" : "" %>>Estonia</option>
+                                <option value="ET" <%=(user.countrycode==='ET' ) ? "selected" : "" %>>Ethiopia</option>
+                                <option value="FK" <%=(user.countrycode==='FK' ) ? "selected" : "" %>>Falkland Islands (Malvinas)</option>
+                                <option value="FO" <%=(user.countrycode==='FO' ) ? "selected" : "" %>>Faroe Islands</option>
+                                <option value="FJ" <%=(user.countrycode==='FJ' ) ? "selected" : "" %>>Fiji</option>
+                                <option value="FI" <%=(user.countrycode==='FI' ) ? "selected" : "" %>>Finland</option>
+                                <option value="FR" <%=(user.countrycode==='FR' ) ? "selected" : "" %>>France</option>
+                                <option value="GF" <%=(user.countrycode==='GF' ) ? "selected" : "" %>>French Guiana</option>
+                                <option value="PF" <%=(user.countrycode==='PF' ) ? "selected" : "" %>>French Polynesia</option>
+                                <option value="TF" <%=(user.countrycode==='TF' ) ? "selected" : "" %>>French Southern Territories</option>
+                                <option value="GA" <%=(user.countrycode==='GA' ) ? "selected" : "" %>>Gabon</option>
+                                <option value="GM" <%=(user.countrycode==='GM' ) ? "selected" : "" %>>Gambia</option>
+                                <option value="GE" <%=(user.countrycode==='GE' ) ? "selected" : "" %>>Georgia</option>
+                                <option value="DE" <%=(user.countrycode==='DE' ) ? "selected" : "" %>>Germany</option>
+                                <option value="GH" <%=(user.countrycode==='GH' ) ? "selected" : "" %>>Ghana</option>
+                                <option value="GI" <%=(user.countrycode==='GI' ) ? "selected" : "" %>>Gibraltar</option>
+                                <option value="GR" <%=(user.countrycode==='GR' ) ? "selected" : "" %>>Greece</option>
+                                <option value="GL" <%=(user.countrycode==='GL' ) ? "selected" : "" %>>Greenland</option>
+                                <option value="GD" <%=(user.countrycode==='GD' ) ? "selected" : "" %>>Grenada</option>
+                                <option value="GP" <%=(user.countrycode==='GP' ) ? "selected" : "" %>>Guadeloupe</option>
+                                <option value="GU" <%=(user.countrycode==='GU' ) ? "selected" : "" %>>Guam</option>
+                                <option value="GT" <%=(user.countrycode==='GT' ) ? "selected" : "" %>>Guatemala</option>
+                                <option value="GG" <%=(user.countrycode==='GG' ) ? "selected" : "" %>>Guernsey</option>
+                                <option value="GN" <%=(user.countrycode==='GN' ) ? "selected" : "" %>>Guinea</option>
+                                <option value="GW" <%=(user.countrycode==='GW' ) ? "selected" : "" %>>Guinea-Bissau</option>
+                                <option value="GY" <%=(user.countrycode==='GY' ) ? "selected" : "" %>>Guyana</option>
+                                <option value="HT" <%=(user.countrycode==='HT' ) ? "selected" : "" %>>Haiti</option>
+                                <option value="HM" <%=(user.countrycode==='HM' ) ? "selected" : "" %>>Heard Island and Mcdonald Islands</option>
+                                <option value="VA" <%=(user.countrycode==='VA' ) ? "selected" : "" %>>Holy See (Vatican City State)</option>
+                                <option value="HN" <%=(user.countrycode==='HN' ) ? "selected" : "" %>>Honduras</option>
+                                <option value="HK" <%=(user.countrycode==='HK' ) ? "selected" : "" %>>Hong Kong</option>
+                                <option value="HU" <%=(user.countrycode==='HU' ) ? "selected" : "" %>>Hungary</option>
+                                <option value="IS" <%=(user.countrycode==='IS' ) ? "selected" : "" %>>Iceland</option>
+                                <option value="IN" <%=(user.countrycode==='IN' ) ? "selected" : "" %>>India</option>
+                                <option value="ID" <%=(user.countrycode==='ID' ) ? "selected" : "" %>>Indonesia</option>
+                                <option value="IR" <%=(user.countrycode==='IR' ) ? "selected" : "" %>>Iran, Islamic Republic of</option>
+                                <option value="IQ" <%=(user.countrycode==='IQ' ) ? "selected" : "" %>>Iraq</option>
+                                <option value="IE" <%=(user.countrycode==='IE' ) ? "selected" : "" %>>Ireland</option>
+                                <option value="IM" <%=(user.countrycode==='IM' ) ? "selected" : "" %>>Isle of Man</option>
+                                <option value="IL" <%=(user.countrycode==='IL' ) ? "selected" : "" %>>Israel</option>
+                                <option value="IT" <%=(user.countrycode==='IT' ) ? "selected" : "" %>>Italy</option>
+                                <option value="JM" <%=(user.countrycode==='JM' ) ? "selected" : "" %>>Jamaica</option>
+                                <option value="JP" <%=(user.countrycode==='JP' ) ? "selected" : "" %>>Japan</option>
+                                <option value="JE" <%=(user.countrycode==='JE' ) ? "selected" : "" %>>Jersey</option>
+                                <option value="JO" <%=(user.countrycode==='JO' ) ? "selected" : "" %>>Jordan</option>
+                                <option value="KZ" <%=(user.countrycode==='KZ' ) ? "selected" : "" %>>Kazakhstan</option>
+                                <option value="KE" <%=(user.countrycode==='KE' ) ? "selected" : "" %>>Kenya</option>
+                                <option value="KI" <%=(user.countrycode==='KI' ) ? "selected" : "" %>>Kiribati</option>
+                                <option value="KP" <%=(user.countrycode==='KP' ) ? "selected" : "" %>>Korea, Democratic People's Republic of</option>
+                                <option value="KR" <%=(user.countrycode==='KR' ) ? "selected" : "" %>>Korea, Republic of</option>
+                                <option value="XK" <%=(user.countrycode==='XK' ) ? "selected" : "" %>>Kosovo</option>
+                                <option value="KW" <%=(user.countrycode==='KW' ) ? "selected" : "" %>>Kuwait</option>
+                                <option value="KG" <%=(user.countrycode==='KG' ) ? "selected" : "" %>>Kyrgyzstan</option>
+                                <option value="LA" <%=(user.countrycode==='LA' ) ? "selected" : "" %>>Lao People's Democratic Republic</option>
+                                <option value="LV" <%=(user.countrycode==='LV' ) ? "selected" : "" %>>Latvia</option>
+                                <option value="LB" <%=(user.countrycode==='LB' ) ? "selected" : "" %>>Lebanon</option>
+                                <option value="LS" <%=(user.countrycode==='LS' ) ? "selected" : "" %>>Lesotho</option>
+                                <option value="LR" <%=(user.countrycode==='LR' ) ? "selected" : "" %>>Liberia</option>
+                                <option value="LY" <%=(user.countrycode==='LY' ) ? "selected" : "" %>>Libyan Arab Jamahiriya</option>
+                                <option value="LI" <%=(user.countrycode==='LI' ) ? "selected" : "" %>>Liechtenstein</option>
+                                <option value="LT" <%=(user.countrycode==='LT' ) ? "selected" : "" %>>Lithuania</option>
+                                <option value="LU" <%=(user.countrycode==='LU' ) ? "selected" : "" %>>Luxembourg</option>
+                                <option value="MO" <%=(user.countrycode==='MO' ) ? "selected" : "" %>>Macao</option>
+                                <option value="MK" <%=(user.countrycode==='MK' ) ? "selected" : "" %>>Macedonia, the Former Yugoslav Republic of</option>
+                                <option value="MG" <%=(user.countrycode==='MG' ) ? "selected" : "" %>>Madagascar</option>
+                                <option value="MW" <%=(user.countrycode==='MW' ) ? "selected" : "" %>>Malawi</option>
+                                <option value="MY" <%=(user.countrycode==='MY' ) ? "selected" : "" %>>Malaysia</option>
+                                <option value="MV" <%=(user.countrycode==='MV' ) ? "selected" : "" %>>Maldives</option>
+                                <option value="ML" <%=(user.countrycode==='ML' ) ? "selected" : "" %>>Mali</option>
+                                <option value="MT" <%=(user.countrycode==='MT' ) ? "selected" : "" %>>Malta</option>
+                                <option value="MH" <%=(user.countrycode==='MH' ) ? "selected" : "" %>>Marshall Islands</option>
+                                <option value="MQ" <%=(user.countrycode==='MQ' ) ? "selected" : "" %>>Martinique</option>
+                                <option value="MR" <%=(user.countrycode==='MR' ) ? "selected" : "" %>>Mauritania</option>
+                                <option value="MU" <%=(user.countrycode==='MU' ) ? "selected" : "" %>>Mauritius</option>
+                                <option value="YT" <%=(user.countrycode==='YT' ) ? "selected" : "" %>>Mayotte</option>
+                                <option value="MX" <%=(user.countrycode==='MX' ) ? "selected" : "" %>>Mexico</option>
+                                <option value="FM" <%=(user.countrycode==='FM' ) ? "selected" : "" %>>Micronesia, Federated States of</option>
+                                <option value="MD" <%=(user.countrycode==='MD' ) ? "selected" : "" %>>Moldova, Republic of</option>
+                                <option value="MC" <%=(user.countrycode==='MC' ) ? "selected" : "" %>>Monaco</option>
+                                <option value="MN" <%=(user.countrycode==='MN' ) ? "selected" : "" %>>Mongolia</option>
+                                <option value="ME" <%=(user.countrycode==='ME' ) ? "selected" : "" %>>Montenegro</option>
+                                <option value="MS" <%=(user.countrycode==='MS' ) ? "selected" : "" %>>Montserrat</option>
+                                <option value="MA" <%=(user.countrycode==='MA' ) ? "selected" : "" %>>Morocco</option>
+                                <option value="MZ" <%=(user.countrycode==='MZ' ) ? "selected" : "" %>>Mozambique</option>
+                                <option value="MM" <%=(user.countrycode==='MM' ) ? "selected" : "" %>>Myanmar</option>
+                                <option value="NA" <%=(user.countrycode==='NA' ) ? "selected" : "" %>>Namibia</option>
+                                <option value="NR" <%=(user.countrycode==='NR' ) ? "selected" : "" %>>Nauru</option>
+                                <option value="NP" <%=(user.countrycode==='NP' ) ? "selected" : "" %>>Nepal</option>
+                                <option value="NL" <%=(user.countrycode==='NL' ) ? "selected" : "" %>>Netherlands</option>
+                                <option value="AN" <%=(user.countrycode==='AN' ) ? "selected" : "" %>>Netherlands Antilles</option>
+                                <option value="NC" <%=(user.countrycode==='NC' ) ? "selected" : "" %>>New Caledonia</option>
+                                <option value="NZ" <%=(user.countrycode==='NZ' ) ? "selected" : "" %>>New Zealand</option>
+                                <option value="NI" <%=(user.countrycode==='NI' ) ? "selected" : "" %>>Nicaragua</option>
+                                <option value="NE" <%=(user.countrycode==='NE' ) ? "selected" : "" %>>Niger</option>
+                                <option value="NG" <%=(user.countrycode==='NG' ) ? "selected" : "" %>>Nigeria</option>
+                                <option value="NU" <%=(user.countrycode==='NU' ) ? "selected" : "" %>>Niue</option>
+                                <option value="NF" <%=(user.countrycode==='NF' ) ? "selected" : "" %>>Norfolk Island</option>
+                                <option value="MP" <%=(user.countrycode==='MP' ) ? "selected" : "" %>>Northern Mariana Islands</option>
+                                <option value="NO" <%=(user.countrycode==='NO' ) ? "selected" : "" %>>Norway</option>
+                                <option value="OM" <%=(user.countrycode==='OM' ) ? "selected" : "" %>>Oman</option>
+                                <option value="PK" <%=(user.countrycode==='PK' ) ? "selected" : "" %>>Pakistan</option>
+                                <option value="PW" <%=(user.countrycode==='PW' ) ? "selected" : "" %>>Palau</option>
+                                <option value="PS" <%=(user.countrycode==='PS' ) ? "selected" : "" %>>Palestinian Territory, Occupied</option>
+                                <option value="PA" <%=(user.countrycode==='PA' ) ? "selected" : "" %>>Panama</option>
+                                <option value="PG" <%=(user.countrycode==='PG' ) ? "selected" : "" %>>Papua New Guinea</option>
+                                <option value="PY" <%=(user.countrycode==='PY' ) ? "selected" : "" %>>Paraguay</option>
+                                <option value="PE" <%=(user.countrycode==='PE' ) ? "selected" : "" %>>Peru</option>
+                                <option value="PH" <%=(user.countrycode==='PH' ) ? "selected" : "" %>>Philippines</option>
+                                <option value="PN" <%=(user.countrycode==='PN' ) ? "selected" : "" %>>Pitcairn</option>
+                                <option value="PL" <%=(user.countrycode==='PL' ) ? "selected" : "" %>>Poland</option>
+                                <option value="PT" <%=(user.countrycode==='PT' ) ? "selected" : "" %>>Portugal</option>
+                                <option value="PR" <%=(user.countrycode==='PR' ) ? "selected" : "" %>>Puerto Rico</option>
+                                <option value="QA" <%=(user.countrycode==='QA' ) ? "selected" : "" %>>Qatar</option>
+                                <option value="RE" <%=(user.countrycode==='RE' ) ? "selected" : "" %>>Reunion</option>
+                                <option value="RO" <%=(user.countrycode==='RO' ) ? "selected" : "" %>>Romania</option>
+                                <option value="RU" <%=(user.countrycode==='RU' ) ? "selected" : "" %>>Russian Federation</option>
+                                <option value="RW" <%=(user.countrycode==='RW' ) ? "selected" : "" %>>Rwanda</option>
+                                <option value="BL" <%=(user.countrycode==='BL' ) ? "selected" : "" %>>Saint Barthelemy</option>
+                                <option value="SH" <%=(user.countrycode==='SH' ) ? "selected" : "" %>>Saint Helena</option>
+                                <option value="KN" <%=(user.countrycode==='KN' ) ? "selected" : "" %>>Saint Kitts and Nevis</option>
+                                <option value="LC" <%=(user.countrycode==='LC' ) ? "selected" : "" %>>Saint Lucia</option>
+                                <option value="MF" <%=(user.countrycode==='MF' ) ? "selected" : "" %>>Saint Martin</option>
+                                <option value="PM" <%=(user.countrycode==='PM' ) ? "selected" : "" %>>Saint Pierre and Miquelon</option>
+                                <option value="VC" <%=(user.countrycode==='VC' ) ? "selected" : "" %>>Saint Vincent and the Grenadines</option>
+                                <option value="WS" <%=(user.countrycode==='WS' ) ? "selected" : "" %>>Samoa</option>
+                                <option value="SM" <%=(user.countrycode==='SM' ) ? "selected" : "" %>>San Marino</option>
+                                <option value="ST" <%=(user.countrycode==='ST' ) ? "selected" : "" %>>Sao Tome and Principe</option>
+                                <option value="SA" <%=(user.countrycode==='SA' ) ? "selected" : "" %>>Saudi Arabia</option>
+                                <option value="SN" <%=(user.countrycode==='SN' ) ? "selected" : "" %>>Senegal</option>
+                                <option value="RS" <%=(user.countrycode==='RS' ) ? "selected" : "" %>>Serbia</option>
+                                <option value="CS" <%=(user.countrycode==='CS' ) ? "selected" : "" %>>Serbia and Montenegro</option>
+                                <option value="SC" <%=(user.countrycode==='SC' ) ? "selected" : "" %>>Seychelles</option>
+                                <option value="SL" <%=(user.countrycode==='SL' ) ? "selected" : "" %>>Sierra Leone</option>
+                                <option value="SG" <%=(user.countrycode==='SG' ) ? "selected" : "" %>>Singapore</option>
+                                <option value="SX" <%=(user.countrycode==='SX' ) ? "selected" : "" %>>Sint Maarten</option>
+                                <option value="SK" <%=(user.countrycode==='SK' ) ? "selected" : "" %>>Slovakia</option>
+                                <option value="SI" <%=(user.countrycode==='SI' ) ? "selected" : "" %>>Slovenia</option>
+                                <option value="SB" <%=(user.countrycode==='SB' ) ? "selected" : "" %>>Solomon Islands</option>
+                                <option value="SO" <%=(user.countrycode==='SO' ) ? "selected" : "" %>>Somalia</option>
+                                <option value="ZA" <%=(user.countrycode==='ZA' ) ? "selected" : "" %>>South Africa</option>
+                                <option value="GS" <%=(user.countrycode==='GS' ) ? "selected" : "" %>>South Georgia and the South Sandwich Islands</option>
+                                <option value="SS" <%=(user.countrycode==='SS' ) ? "selected" : "" %>>South Sudan</option>
+                                <option value="ES" <%=(user.countrycode==='ES' ) ? "selected" : "" %>>Spain</option>
+                                <option value="LK" <%=(user.countrycode==='LK' ) ? "selected" : "" %>>Sri Lanka</option>
+                                <option value="SD" <%=(user.countrycode==='SD' ) ? "selected" : "" %>>Sudan</option>
+                                <option value="SR" <%=(user.countrycode==='SR' ) ? "selected" : "" %>>Suriname</option>
+                                <option value="SJ" <%=(user.countrycode==='SJ' ) ? "selected" : "" %>>Svalbard and Jan Mayen</option>
+                                <option value="SZ" <%=(user.countrycode==='SZ' ) ? "selected" : "" %>>Swaziland</option>
+                                <option value="SE" <%=(user.countrycode==='SE' ) ? "selected" : "" %>>Sweden</option>
+                                <option value="CH" <%=(user.countrycode==='CH' ) ? "selected" : "" %>>Switzerland</option>
+                                <option value="SY" <%=(user.countrycode==='SY' ) ? "selected" : "" %>>Syrian Arab Republic</option>
+                                <option value="TW" <%=(user.countrycode==='TW' ) ? "selected" : "" %>>Taiwan, Province of China</option>
+                                <option value="TJ" <%=(user.countrycode==='TJ' ) ? "selected" : "" %>>Tajikistan</option>
+                                <option value="TZ" <%=(user.countrycode==='TZ' ) ? "selected" : "" %>>Tanzania, United Republic of</option>
+                                <option value="TH" <%=(user.countrycode==='TH' ) ? "selected" : "" %>>Thailand</option>
+                                <option value="TL" <%=(user.countrycode==='TL' ) ? "selected" : "" %>>Timor-Leste</option>
+                                <option value="TG" <%=(user.countrycode==='TG' ) ? "selected" : "" %>>Togo</option>
+                                <option value="TK" <%=(user.countrycode==='TK' ) ? "selected" : "" %>>Tokelau</option>
+                                <option value="TO" <%=(user.countrycode==='TO' ) ? "selected" : "" %>>Tonga</option>
+                                <option value="TT" <%=(user.countrycode==='TT' ) ? "selected" : "" %>>Trinidad and Tobago</option>
+                                <option value="TN" <%=(user.countrycode==='TN' ) ? "selected" : "" %>>Tunisia</option>
+                                <option value="TR" <%=(user.countrycode==='TR' ) ? "selected" : "" %>>Turkey</option>
+                                <option value="TM" <%=(user.countrycode==='TM' ) ? "selected" : "" %>>Turkmenistan</option>
+                                <option value="TC" <%=(user.countrycode==='TC' ) ? "selected" : "" %>>Turks and Caicos Islands</option>
+                                <option value="TV" <%=(user.countrycode==='TV' ) ? "selected" : "" %>>Tuvalu</option>
+                                <option value="UG" <%=(user.countrycode==='UG' ) ? "selected" : "" %>>Uganda</option>
+                                <option value="UA" <%=(user.countrycode==='UA' ) ? "selected" : "" %>>Ukraine</option>
+                                <option value="AE" <%=(user.countrycode==='AE' ) ? "selected" : "" %>>United Arab Emirates</option>
+                                <option value="GB" <%=(user.countrycode==='GB' ) ? "selected" : "" %>>United Kingdom</option>
+                                <option value="US" <%=(user.countrycode==='US' ) ? "selected" : "" %>>United States</option>
+                                <option value="UM" <%=(user.countrycode==='UM' ) ? "selected" : "" %>>United States Minor Outlying Islands</option>
+                                <option value="UY" <%=(user.countrycode==='UY' ) ? "selected" : "" %>>Uruguay</option>
+                                <option value="UZ" <%=(user.countrycode==='UZ' ) ? "selected" : "" %>>Uzbekistan</option>
+                                <option value="VU" <%=(user.countrycode==='VU' ) ? "selected" : "" %>>Vanuatu</option>
+                                <option value="VE" <%=(user.countrycode==='VE' ) ? "selected" : "" %>>Venezuela</option>
+                                <option value="VN" <%=(user.countrycode==='VN' ) ? "selected" : "" %>>Viet Nam</option>
+                                <option value="VG" <%=(user.countrycode==='VG' ) ? "selected" : "" %>>Virgin Islands, British</option>
+                                <option value="VI" <%=(user.countrycode==='VI' ) ? "selected" : "" %>>Virgin Islands, U.s.</option>
+                                <option value="WF" <%=(user.countrycode==='WF' ) ? "selected" : "" %>>Wallis and Futuna</option>
+                                <option value="EH" <%=(user.countrycode==='EH' ) ? "selected" : "" %>>Western Sahara</option>
+                                <option value="YE" <%=(user.countrycode==='YE' ) ? "selected" : "" %>>Yemen</option>
+                                <option value="ZM" <%=(user.countrycode==='ZM' ) ? "selected" : "" %>>Zambia</option>
+                                <option value="ZW" <%=(user.countrycode==='ZW' ) ? "selected" : "" %>>Zimbabwe</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="user-show-companyReg">Company Registration Number:</label>
+                            <input class="form-control" type="text" id="user-show-companyReg"
+                                value="<%=user.companyReg%>" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="user-show-vatNumber">Company VAT Number:</label>
+                            <input class="form-control" type="text" id="user-show-vatNumber" value="<%=user.vatNumber%>"
+                                readonly>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <% if(equipment && equipment.length > 0) { %>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="card mt-3">
+                <div class="card-header bg-dark text-white">
+                    Equipment Added by : <strong><%=user.firstname%> <%=user.lastname%></strong>
+                </div>
+                <div class="card-body p-0">
+
+                    <table class="table table-striped table-bordered table-hover m-0 p-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Manufacturer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i = 0; i < equipment.length; i++) { %>
+                            <tr>
+                                <th scope="row"><%=i+1%></th>
+                                <td><a href="/equipment/<%=equipment[i]._id%>"><%=equipment[i].name%></a></td>
+                                <td><%=equipment[i].type%></td>
+                                <td><%=equipment[i].oem%></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <% } %>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4 my-3">
+            <a class="btn btn-primary btn-block" href="/users/<%=user._id%>/edit"><i class="fas fa-user-edit"></i>
+                Edit Details</a>
+        </div>
+        <div class="col-md-4 my-3">
+            <a class="btn btn-primary btn-block" href="/users/forgot"><i class="fas fa-key"></i> Reset Password</a>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+</div>
+
+<% } else { %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <a href="/users"><i class="fas fa-arrow-circle-left fa-2x"></i></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="h3 mb-3 font-weight-normal"><i class="far fa-id-card fa-2x"></i><i class="fas fa-question"></i>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>No details found for the selected user</h1>
+        </div>
+    </div>
+</div>
+
+<% } %>
+
+<% include ../partials/footer %>

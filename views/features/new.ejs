@@ -1,0 +1,72 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row mb-3 mt-3">        
+        <div class="col-md-12">
+            <h4>Features of <%=equipment.name%></h4>
+        </div>        
+    </div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form action="/equipment/<%=equipment._id%>/features" method="POST">
+           
+               
+                <div class="form-group">
+                    <label>Feature</label>
+                <input placeholder="Enter Feature" class="form-control" type="text"  name="feature[text]" required>
+                    </div>
+                
+                    <div  class="mt-3">
+                        <button class="btn btn-primary" type="submit" id="button-addon2"><i class="fas fa-plus "></i> Save
+                        </button>
+                    </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-11 mt-3">
+        <label>Features</label>
+        </div>
+        </div>
+    <%equipment.features.forEach(function(feature){%>
+        <div class="row">
+    <div class="col-md-11">
+        <form class="" action="/equipment/<%=equipment._id%>/features/<%=feature._id%>?_method=PUT" method="POST">
+           <div class="row">
+            <div class="col-md-11  mb-3">
+                <input class="form-control border border-secondary" type="text" value="<%=feature.text%>"
+                    name="feature[text]" required />
+                
+            </div>
+            <div class="col-md-1  mb-3  pt-2 d-md-block">
+                <button class="btn btn-warning" type="submit" id="button-addon2"><i
+                        class="far fa-save"></i></button>
+            </div>
+        </div>
+        </form>
+    </div>
+    <div class="col-md-1  mb-3 pt-2 d-none d-md-block">
+        <form action="/equipment/<%=equipment._id%>/features/<%=feature._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger"><i class="far fa-trash-alt "></i></button>
+        </form>
+    </div>
+    <div class="col-md-1 mb-3 pt-2 d-block d-md-none text-right">
+        <form action="/equipment/<%=equipment._id%>/features/<%=feature._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+        </form>
+    </div>
+</div>
+    <% }) %>
+
+<div class="row ">
+    <div class="col-md-12 mt-3 mb-3 pt-2">
+        
+        <a class="btn btn-darkgrey" href="/equipment/<%=equipment._id%>/edit"><i class="fas fa-arrow-circle-left "></i> Back</a>
+    </div>
+   
+</div>
+</div>
+<% include ../partials/footer %>

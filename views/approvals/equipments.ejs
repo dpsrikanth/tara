@@ -1,0 +1,108 @@
+<% include ../partials/header %>
+<div class="container pt-4">
+    <header style=" height: 60px;margin-bottom: 0px;">
+        <div style="display: flex;">
+            <div style="width: 150px;height: 60px; background-color: #f2f5f7;">
+            <a href="/approvals/users" style="height: 100%;color: #666; width: 100%;display: flex;align-items: center;justify-content: center;">
+                Users
+            </a>
+            </div>
+            <div style="width: 150px;height: 60px;border: 1px solid #f2f5f7; ">
+            <p  style="height: 100%;font-weight: 700; width: 100%;display: flex;align-items: center;justify-content: center; background-color: #007ebd; color: #FFF;">
+                Equipments
+            </p>
+            </div>
+    </div>
+
+</header>
+
+<div class="user-container mb-5" >
+    <div style="display: none;" id="custom-equip-modal-wrapper">
+        <div class="custom-equip-modal">
+            <h5 style="text-align: center;">Please mention your reason.</h5>
+            <input id="equip-reject-reason" placeholder="Enter" ></input>
+            <div>
+                <button onclick="closeModalEquip()">Cancel</button>
+                <button onclick="handleRejectEquip()">Confirm</button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <div style="display: none;" id="user-loading-modal-wrapper">
+        <div class="user-loading-modal">
+            <img src="https://img.icons8.com/fluency/96/000000/loading.png"/>
+        </div>
+
+    </div>
+<div class="row">
+    <div class="col-md-12">
+        <!-- <h1 class="my-5 font-weight-normal text-center"><i class="fas fa-users"></i> Users</h1> -->
+        <% if(equipments && equipments.length > 0) { %>
+        <table class="table table-striped table-bordered table-hover m-0 p-0">
+            <thead class="">
+                <tr class="bg-info">
+                    <th style="white-space: nowrap;" scope="col"  width="4%">#</th>
+                    <th  style="white-space: nowrap;" scope="col">Name</th>
+                    <th style="white-space: nowrap;" scope="col">Type</th>
+                    <th style="white-space: nowrap;" scope="col">OEM</th>
+                    <th style="white-space: nowrap;" scope="col" width="5%">TRL</th>
+                    <!-- <th style="white-space: nowrap;" scope="col"  width="10%">Rock Hardness</th> -->
+                    <!-- <th style="white-space: nowrap;" scope="col">Ore location</th> -->
+                    <th style="white-space: nowrap;" scope="col" width="13%">Added On</th>
+                    <th style="white-space: nowrap;" scope="col" width="10%">Status</th>
+                    <% if(currentUser.isAdmin){ %>
+                        <th style="white-space: nowrap;" scope="col" width="15%">Action</th>
+                        <% } %>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < equipments.length; i++) { %>
+                <tr id= "<%='row'+equipments[i]._id%>">
+                    <th scope="row"><%=i+1%></th>
+                    <td><a><%=equipments[i].name%></a></td>
+                    <td><%=equipments[i].eqtype%></td> 
+                    <td><%=equipments[i].oem%></td>
+                    <td style="white-space: pre-wrap;"><%= equipments[i].trl %> </td>                    
+                    <td><%=moment(equipments[i].created_date).format('DD MMM YYYY HH:mm')%></td>                    
+                    <td>
+                        <div class="user-dropdown-static" style="justify-content: center;align-items: center;">
+                    <p id="status<%=equipments[i]._id %>" style="margin: 0; justify-content: center;white-space: nowrap;"><%= equipments[i].approvalStatus.toUpperCase() %>  </p>
+                   </div>
+                    </td>
+                        <td style="width:150px; border: 0; white-space: nowrap;display: flex; justify-content: space-evenly;" class="users-last-column">
+                            <button id="app<%=equipments[i]._id %>"  style="border: none;background-color: transparent;" onclick="handleEquipmentApproval('<%=equipments[i]._id%>', 'approved')" 
+                                class="<%= equipments[i].approvalStatus.toLowerCase() === "approved"?"button_disabled":"" %>">
+                                <img style="height: 24px; width: 24px;" src="/images/icons/approve.png"/>
+                              </button>
+                              <button id="rej<%=equipments[i]._id %>" class ="<%= equipments[i].approvalStatus.toLowerCase() === "rejected"?"button_disabled":""  %> " style="border: none;background-color: transparent;" onclick="openEquipModal('<%=equipments[i]._id%>')" class="approve-buttons">
+                                <img style="height: 24px; width: 24px;" src="/images/icons/reject.png"/>
+                              </button>
+                              <a href='/approvals/equipments/<%=equipments[i]._id%>/edit' style="border: none;background-color: transparent;">
+                                <img style="height: 24px; width: 24px;" src="/images/icons/edit.png"/>
+                            </a>
+                                <button onclick="handleEquipDelete('<%=equipments[i]._id%>')" style="border: none;background-color: transparent;">
+                                    <img style="height: 24px; width: 24px;" src="/images/icons/delete.png"/>
+                                </button>
+                        </td>
+
+
+
+                                  <!-- <td style="white-space: nowrap;display: flex; justify-content: space-evenly;">
+                    <a href='/approvals/equipments/<%=equipments[i]._id%>/edit' style="padding: 8px;border: 1px solid #e5e5e5;background-color: #ffffff;"><img style="height: 20px; width: 20px;" src="https://img.icons8.com/ios-glyphs/30/47c965/edit--v1.png"/></a>
+                    <button id= "<%='delete'+equipments[i]._id%>" onclick="handleEquipDelete('<%= equipments[i]._id %>')" style="padding: 8px;border: 1px solid #e5e5e5;background-color: #ffffff;"><img style="height: 20px; width: 20px;" src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/e82e2e/external-delete-miscellaneous-kiranshastry-solid-kiranshastry.png"/></button>
+                </td> -->
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <% } else { %>
+        <h3 class="text-center">No registered users found</h3>
+        <% } %>
+    </div>
+</div>
+</div>
+</div>
+<% include ../partials/footer %>

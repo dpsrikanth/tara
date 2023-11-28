@@ -1,0 +1,61 @@
+<% include ../partials/header %>
+
+
+<h1 class="pl-5 pr-5">Favorites</h1>
+<div class="col-md-12 row pt-3 pl-5 pr-5 equipments">
+    <% equipment.forEach(function(equip){ %>
+        <% if(equip.visibility==='public' || equip.visibility==='Public' || (currentUser &&
+            equip.author.id.equals(currentUser._id)) || (currentUser && currentUser.isAdmin) || (currentUser &&
+            currentUser.status=='approved' && currentUser.userType=='memsa' )) { %>
+            <div class="col-md-3">
+                <div class="card equip-card">
+                
+               
+                <% if(currentUser && currentUser.favourites.includes(equip._id.toString())){ %>
+                    <form class="" action="/equipment/add/favourites/<%=currentUser && currentUser._id%>/<%=equip._id%>/false?_method=POST" method="post">
+                    <button class="icon-holder-equip-card" >
+                    <img  class="star-image filled" src="https://img.icons8.com/fluency/96/000000/star.png"/>
+                </button>
+            </form>
+                    <% } else if(currentUser) { %>
+                <form class="" action="/equipment/add/favourites/<%=currentUser && currentUser._id%>/<%=equip._id%>/true?_method=POST" method="post">
+                    <button class="icon-holder-equip-card" >
+                        <img class="star-image" src="https://img.icons8.com/ios/50/000000/star--v1.png"/>
+                     </button>
+                </form>
+          
+            <% }else{ %>
+                <a href="/login" class="icon-holder-equip-card">
+                    <img class="star-image" src="https://img.icons8.com/ios/50/000000/star--v1.png"/>
+                </a>
+
+                <%} %>
+                <div class="card-body-above">
+                    <img src="<%= (equip.images[0]) && equip.images[0].file %>"
+                        onerror="this.src='/ui/images/default/unavailable-image.png'" class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <%=equip.name%>
+                        </h6>
+
+                        <p class="card-text mb-0">
+                            <%=equip.oem%>
+                        </p>
+                        <div class="mt-2 row">
+                            
+                            <div class="col-md-12">
+
+                                <a href="/equipment/<%=equip._id%>" type="button" class="btn btn-maincolor2">View
+                                    more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <% } %>
+                <% }); %>
+
+</div>
+<% include ../partials/footer %>

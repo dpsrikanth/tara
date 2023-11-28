@@ -1,0 +1,123 @@
+<% include partials/header %>
+  <style>
+    .parallax {
+      position: relative;
+      z-index: 1;
+      height: 300px;
+      -webkit-box-shadow: inset 0px -6px 5px rgba(50, 50, 50, 0.75);
+      -moz-box-shadow: inset 0px -6px 5px rgba(50, 50, 50, 0.75);
+      box-shadow: inset 0px -6px 5px rgba(50, 50, 50, 0.75);
+    }
+
+    #trans1 {
+      background: url(../images/slide08.jpg) no-repeat;
+      /*height:575px;*/
+      background-position: center bottom;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    #trans2 {
+      background: url(../images/slide02.jpg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    #trans3 {
+      background: url(../images/slide01.jpg) no-repeat top center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    .txt {
+      background: rgba(0, 0, 0, 0.7);
+      color: #ccc;
+      width: 100%;
+      height: 100%;
+    }
+
+    .txt h2 {
+      text-align: center;
+      color: #FFF;
+      line-height: 6;
+      font-size: 50px;
+      letter-spacing: 10px;
+    }
+
+    /*.txt.right { margin: 150px 100px 0 0; float: right; text-align: right; }
+.txt.left { float: left; text-align: left; margin: 150px 0 0 100px; }
+.txt.sub { font-size: 50px; line-height: 175%; font-weight: lighter; letter-spacing: 1.5px; background: #000; background: rgba(0,0,0,0.60); font-size: 25px; color: #ccc; margin: 0 100px 0 100px; }*/
+
+    /*.content1 h2 { padding:0 25px; }
+.content1 p { padding:0 50px; }*/
+  </style>
+  <main role="main">
+
+    <!--<div><img src="/ui/images/default/banner.png" class="img-fluid" alt="Responsive image"></div>-->
+
+    <div class="container-fluid marketing p-0">
+      <div class="parallax" id="trans1">
+        <div class="txt">
+          <h2> How To Use MiningTARA </h2>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+      <div class="container">
+        <div class="content1">
+          <p>It is possible to access the database from the home page using the Equipment Search bar and Top Categories,
+            and sign-in is not required.
+            However, registering on the site allows users to save and review favourite items, and to receive quarterly
+            email updates on new equipment added.</p>
+          <p>
+            On the Equipment page, a number of options are available.
+          <ul>
+            <li>Search bar - separate search terms with a space; a comma is used as ‘OR’</li>
+            <li>Filters - select terms under one or more categories to narrow the selection on screen</li>
+            <li>Compare - tick the box on two items of equipment, and select the Compare button</li>
+            <li>Use the View More button to access the supplier information, detailed description, TRL level, fact sheet
+              (if available), specifications and features for each piece of equipment.</li>
+            <li>Registered users can star favourite items, and view these by using the Favourites button (visible once
+              logged in).</li>
+          </ul>
+          </p>
+          <p>
+            To register as a user, use the Sign Up button at the top right of the screen.
+            <br>
+            Currently, MEMSA membership is a requirement to add equipment to the database. Contact <a class="emailLink"
+              href="mailto:join@memsa.org.za?subject= More about becoming a MEMSA member">join@memsa.org.za</a> to
+            find out more about becoming a MEMSA member. Due to the specific aims of the TARA project, this opportunity
+            is open to South African companies manufacturing locally, and meeting relevant membership requirements.
+          </p>
+
+          <div style="clear:both;"></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="container">
+      <div class="customer-logos slider d-flex">
+        <div class="slide"><img src="images/logos/CSIR.jpg"></div>
+        <div class="slide"><img src="images/logos/Mining-Equipment-Manufacturers-of-South-Africa.jpg"></div>
+        <div class="slide"><img src="images/logos/MCSA.jpg"></div>
+        <div class="slide"><img src="images/logos/Coaltech.jpg"></div>
+        <div class="slide"><img src="images/logos/Department-of-Mineral-Resources.jpg"></div>
+        <div class="slide"><img src="images/logos/Department-of-Planning-Monitoring-and-Evaluation.jpg"> </div>
+        <div class="slide"><img src="images/logos/Department-of-Trade-and-Industry.jpg"></div>
+        <div class="slide"><img src="images/logos/Geological-Society-of-South-Africa.jpg"></div>
+        <div class="slide"><img src="images/logos/Science-and-Innovation.jpg"></div>
+        <div class="slide"><img src="images/logos/South-African-Minerals-Processing-Cluster.jpg"></div>
+        <div class="slide"><img src="images/logos/The-Southern-African-Institute-of-Mining-and-Metallurgy.jpg"></div>
+        <div class="slide"><img src="images/logos/University-of-Johannesburg.jpg"></div>
+        <div class="slide"><img src="images/logos/University-of-Pretoria.jpg"></div>
+        <div class="slide"><img src="images/logos/University-of-the-Witwatersrand.jpg"></div>
+      </div>
+    </div>
+  </main>
+  <% include partials/footer%>
+    </hr>

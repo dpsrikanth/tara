@@ -1,0 +1,47 @@
+<% include ../partials/header %>
+<style>
+        table td,
+        table th {
+    word-break: break-all;
+}
+</style>
+<section class="ls  container-px-xl-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-xl-8 ls ">
+                <div class="">
+                    <div class="fw-divider-space divider-xl-160 divider-lg-130 divider-md-90 divider-60"></div>
+                    <h2 class="special-heading text-left">
+                        <span class="text-capitalize">
+                            Edit NEWS Item
+                        </span>
+                    </h2>
+                    <div class="divider-line bg-maincolor"></div>
+                    <div class="fw-divider-space divider-25"></div>
+                    <div class="divider-30 hidden-above-lg">
+                       
+                    </div>
+                    <div class="divider-30 hidden-above-lg"></div>   
+                        <label
+                            style="padding-top: 15px;padding-bottom: 2px;font-weight: bold;text-transform: none;">NEWS
+                            Title</label>
+                        <input type="text" id="newsTitle" value="<%=newsitem[0].newsTitle%>"
+                            placeholder="Please enter NEWS title" minlength="20" readonly required />
+                        <input type="hidden" id="newsid" value="<%=newsitem[0]._id%>"/>
+                        <label
+                            style="padding-top: 15px;padding-bottom: 2px;font-weight: bold;text-transform: none;">NEWS
+                            content</label>
+                        <textarea id="etxtnewscontent"
+                            class="etxtnewscontent content"><%=newsitem[0].newsContent%></textarea>
+                        <input type="hidden" id="aencryptedcontentid" value=""/>
+                        <div class="fw-divider-space divider-xl-30 divider-lg-30 divider-md-30 divider-30"></div>
+                        <button type="submit" class="btn btn-gradient medium-btn" onclick="saveEditNews()">Save</button>
+                        <button type="button" class="btn btn-outline-darkgrey medium-btn"
+                            onclick="gotonewsitems()">Cancel</button>
+                    <div class="fw-divider-space divider-xl-160 divider-lg-130 divider-md-90 divider-60"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<% include ../partials/footer %>

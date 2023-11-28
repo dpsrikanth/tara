@@ -1,0 +1,172 @@
+<% include ../partials/header %>
+
+    <section class="ls  c-gutter-30">
+        <div class="container">
+            <div class="row">
+
+
+                <main class="col-lg-12 col-xl-12">
+                    <div class="product type-product ">
+                        <h2>Compare Equipment</h2>
+                        <div>
+                            <table class="shop_attributes">
+
+
+                                <tbody>
+                                    <tr>
+                                        <th style="width:15%;"></th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td style="width:28%;">
+                                                <img  
+                                                 src="<%=obj.images[0] && obj.images[0].file %>" class="comapre-image">
+                                            </td>
+                                            <% }); %>                                      
+                                    </tr>
+                                    <tr>
+                                        <th>Equipment</th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p><%= obj.name %></p>
+                                            </td>
+                                            <% }); %>                                      
+                                    </tr>
+                                    <tr>
+                                        <th>Type</th>
+                                        
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p><%= obj.type %></p>
+                                            </td>
+                                            <% }); %>                                        
+                                    </tr>
+                                    <tr>
+                                        <th>OEM</th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p><%= obj.oem %></p>
+                                            </td>
+                                            <% }); %>                                       
+                                    </tr>
+                                    <tr>
+                                        <th>TRL</th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p><%= obj.trl %></p>
+                                            </td>
+                                            <% }); %>                                        
+                                    </tr>
+                                    <tr>
+                                        <th>Mine Development</th>                                        
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p><%= obj.miningCycle %></p>
+                                            </td>
+                                            <% }); %>                                       
+                                    </tr>
+                                    <tr>
+                                        <th>Mining Activity</th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p><%= obj.mineActivity %></p>
+                                            </td>
+                                            <% }); %>                                       
+                                    </tr>
+                                    <tr>
+                                        <th>Mining Method</th>                                        
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p><%= obj.miningMethod %></p>
+                                            </td>
+                                            <% }); %>                                       
+                                    </tr>
+                                    <tr>
+                                        <th>Mineral</th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p  class="htmldecode"><%= obj.mineral %></p>
+                                            </td>
+                                            <% }); %>                                      
+                                    </tr>
+                                    <tr>
+                                        <th>Energy Source</th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p><%= obj.energySource %></p>
+                                            </td>
+                                            <% }); %>                                      
+                                    </tr>
+                                    <tr>
+                                        <th>Logistics & materials handling</th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p class="htmldecode"><%= obj.LogisticsAndMaterials %></p>
+                                            </td>
+                                            <% }); %>                                      
+                                    </tr>
+                                    <tr>
+                                        <th>ITComms</th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p><%= obj.ITComms %></p>
+                                            </td>
+                                            <% }); %>                                      
+                                    </tr>
+                                    <tr>
+                                        <th>Reef type </th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td>
+                                                <p><%= obj.reefType %></p>
+                                            </td>
+                                            <% }); %>                                      
+                                    </tr>
+                                   
+                                    <tr>
+                                        <th style="vertical-align: top">Description</th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td style="vertical-align: top">
+                                                <p style="white-space: pre-line; text-align: left;"><%= obj.description %></p>
+                                            </td>
+                                            <% }); %>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">
+                                            <a href="/equipment" type="button" class="btn btn-darkgrey">Back</a>
+                                        </th>
+                                        <% productList.forEach(function(obj){  %>
+                                            <td class="text-center">
+                                                <form class="" action="/equipment/add/favourites/<%=currentUser && currentUser._id%>/<%=obj._id%>/true?_method=POST" method="post">
+                                                <button type="submit" class="btn btn-maincolor2">Add to Favorites</button>
+                                                </form>
+                                                <a href="/equipment/<%=obj._id%>" type="button"
+                                                    class="btn btn-maincolor2">View
+                                                    more</a>
+                                            </td>
+                                            <% }); %>   
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                    <!-- #product-22 -->
+
+
+                </main>
+
+                <!--<aside class="col-lg-5 col-xl-3">
+
+                
+
+            </aside>-->
+
+
+            </div>
+
+        </div>
+    </section>
+
+    <% include ../partials/footer %>

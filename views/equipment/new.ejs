@@ -1,0 +1,253 @@
+<% include ../partials/header %>
+
+    <div class="container mb-5 mt-3">
+        <div class="row">
+            <!--<div class="col-md-1"></div>-->
+            <div class="col-md-12 pt-3 mb-3">
+                <!--<a href="/equipment"><i class="fas fa-arrow-circle-left fa-2x"></i></a>-->
+                <h3>Add Equipment</h3>
+            </div>
+            <!--<div class="col-md-1"></div>-->
+        </div>
+
+        <!--<hr />-->
+
+
+        <form action="/equipment" method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="equipmentName">Equipment Name:<span style="color: red;">*</span></label>
+                        <input id="equipmentName" class="form-control" type="text" placeholder="Required field"
+                            name="equipment[name]" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="eqtype">Equipment Type :<span style="color: red;">*</span></label>
+                        <input id="eqtype" class="form-control" type="text" placeholder="Required field"
+                            name="equipment[eqtype]" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" id="miningType">
+                        <label for="equipmentType">Mining Type:</label>
+                        <input id="equipmentType" class="form-control" type="text" placeholder="Required field"
+                            name="equipment[type]" readonly required>
+                        <div>
+                            <input type="checkbox" id="type_Surfacemining" name="type_Surfacemining"
+                                value="Surface mining" /><label for="type_Surfacemining">Surface mining</label>
+                            <input type="checkbox" id="type_Undergroundmining" name="type_Undergroundmining"
+                                value="Underground mining" /><label for="type_Undergroundmining">Underground
+                                mining</label>
+                            <input type="checkbox" id="type_MineralProcessingandBeneficiation"
+                                name="type_MineralProcessingandBeneficiation"
+                                value="Mineral Processing and Beneficiation" /><label
+                                for="type_MineralProcessingandBeneficiation">Mineral
+                                Processing and Beneficiation</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="manufacturer" >Manufacturer:<span style="color: red;">*</span></label>
+                        <input id="manufacturer" class="form-control" type="text" placeholder="Required field"
+                            name="equipment[oem]" required>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="description" >Description:<span style="color: red;">*</span></label>
+                        <textarea class="form-control" id="description" rows="5" cols="30" name="equipment[description]"
+                            required></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" id="miningCycle">
+                        <label for="miningCycle">Mine Development:</label>                        
+                        <input id="miningCycle" class="form-control" type="text" placeholder="Required field"
+                            name="equipment[miningCycle]" readonly required>
+                        <div>
+                            <input type="checkbox" id="mineCycle_Prospecting" name="mineCycle_Prospecting" value="Prospecting" />
+                            <label for="mineCycle_Prospecting">Prospecting</label>
+
+                            <input type="checkbox" id="mineCycle_ShaftSinking" name="mineCycle_ShaftSinking" value="Shaft Sinking" />
+                            <label for="mineCycle_ShaftSinking">Shaft Sinking</label>
+                            
+                            <input type="checkbox" id="mineCycle_AccessDevelopment" name="mineCycle_AccessDevelopment" value="Access Development" />
+                            <label for="mineCycle_AccessDevelopment">Access Development</label>
+
+                            <input type="checkbox" id="mineCycle_Development" name="mineCycle_Development" value="Development" />
+                            <label for="mineCycle_Development">Development</label>
+
+                            <input type="checkbox" id="mineCycle_Stoping" name="mineCycle_Stoping" value="Stoping" />
+                            <label for="mineCycle_Stoping">Stoping</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" id="mineActivity">
+                        <label for="mineActivity">Mining Activity:</label>                        
+                        <input id="mineActivity" class="form-control" type="text" placeholder="Required field"
+                            name="equipment[mineActivity]" readonly required>
+                        <div>
+                            <input type="checkbox" id="miningActivities_Drilling" name="miningActivities_Drilling"
+                                value="Drilling" /><label for="miningActivities_Drilling">Drilling</label>
+                            <input type="checkbox" id="mineCycle_Blasting" name="mineCycle_Blasting"
+                                value="Blasting" /><label for="mineCycle_Blasting">Blasting</label>
+                            <input type="checkbox" id="mineCycle_Cleaning" name="mineCycle_Cleaning"
+                                value="Cleaning" /><label for="mineCycle_Cleaning">Cleaning</label>
+                            <input type="checkbox" id="mineCycle_Supporting" name="mineCycle_Supporting"
+                                value="Supporting" /><label for="mineCycle_Supporting">Supporting</label>                      
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" id="miningMethod">
+                        <label for="miningMethod">Mining Method:</label>                        
+                        <input id="miningMethod" class="form-control" type="text" placeholder="Required field"
+                            name="equipment[miningMethod]" readonly required>
+                        <div>
+                            <input type="checkbox" id="miningMethod_Mechanised" name="miningMethod_Mechanised"
+                                value="Mechanised" /><label for="miningMethod_Mechanised">Mechanised</label>
+                            <input type="checkbox" id="mineCycle_Conventional" name="mineCycle_Conventional"
+                                value="Conventional" /><label for="mineCycle_Conventional">Conventional</label>
+                            <input type="checkbox" id="mineCycle_Hybrid" name="mineCycle_Hybrid" value="Hybrid" /><label
+                                for="mineCycle_Hybrid">Hybrid</label>
+                            <input type="checkbox" id="mineCycle_Autonomous" name="mineCycle_Autonomous"
+                                value="Autonomous" /><label for="mineCycle_Autonomous">Autonomous</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" id="mineral">
+                        <label for="mineral">Mineral:</label>                        
+                        <input id="mineral" class="form-control" type="text" placeholder="Required field"
+                            name="equipment[mineral]" required readonly>
+                        <div>
+                            <input type="checkbox" id="mineral_Gold" name="mineral_Gold" value="Gold & Platinum" /><label for="mineral_Gold">Gold & Platinum</label>
+                            <input type="checkbox" id="mineral_Coal" name="mineral_Coal" value="Coal" /><label for="mineral_Coal">Coal</label>
+                            <input type="checkbox" id="mineral_Diamonds" name="mineral_Diamonds" value="Diamonds" /><label for="mineral_Diamonds">Diamonds</label>
+                             <input type="checkbox" id="mineral_BaseMetals" name="mineral_BaseMetals" value="Base Metals" /><label for="mineral_BaseMetals">Base Metals</label>
+                              <input type="checkbox" id="mineral_Other" name="mineral_Other" value="Other" /><label for="mineral_Other">Other</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="trl">TRL:<span style="color: red;">*</span></label>                        
+                        <button type="button" class="btn btn-link py-0" data-toggle="popover"
+                            data-img="/ui/images/default/nasa-trl-meter.png" title="TRL Chart"><i
+                                class="fas fa-info-circle"></i> TRL Reference Chart
+                        </button>
+                        <input id="txttrl" class="form-control" readonly type="text" placeholder="" name="equipment[trl]"
+                            pattern="^TRL[1-9]$" title="Format e.g. TRL1, TRL2, TRL9...">                            
+                            <select id="ddltrl" onchange="document.getElementById('txttrl').value=document.getElementById('ddltrl').value;">
+                              <option value="">Select</option>
+                              <option value="TRL1">TRL1</option>
+                              <option value="TRL2">TRL2</option>
+                              <option value="TRL3">TRL3</option>
+                              <option value="TRL4">TRL4</option>
+                              <option value="TRL5">TRL5</option>
+                              <option value="TRL6">TRL6</option>
+                              <option value="TRL7">TRL7</option>
+                              <option value="TRL8">TRL8</option>
+                              <option value="TRL9">TRL9</option>
+                              </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group" id="energySource">
+                        <label for="rockHardness">Energy Source:</label>
+                        <input class="form-control" type="text" readonly name="equipment[energySource]" />
+                        <div>
+                            <input type="checkbox" id="energySource_Pneumatic" name="energySource_Pneumatic"
+                                value="Pneumatic" /><label for="energySource_Pneumatic">Pneumatic</label>
+                            <input type="checkbox" id="energySource_Waterhydraulic" name="energySource_Waterhydraulic"
+                                value="Water hydraulic" /><label for="energySource_Waterhydraulic">Water
+                                hydraulic</label>
+                            <input type="checkbox" id="energySource_Electric_AC" name="energySource_Electric_AC"
+                                value="Electric AC" /><label for="energySource_Electric_AC">Electric AC</label>
+
+                            <input type="checkbox" id="energySource_Diesel_Electro-hydraulic"
+                                name="energySource_Diesel_Electro-hydraulic" value="Diesel Electro-hydraulic" /><label
+                                for="energySource_Diesel_Electro-hydraulic">Diesel
+                                Electro-hydraulic</label>
+                            <input type="checkbox" id="energySource_Battery" name="energySource_Battery"
+                                value="Battery" /><label for="energySource_Battery">Battery</label>
+                            <input type="checkbox" id="energySource_Fuel_Cell" name="energySource_Fuel_Cell"
+                                value="Fuel Cell" /><label for="energySource_Fuel_Cell">Fuel Cell</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" id="LogisticsAndMaterials">
+                        Logistics & materials handling:
+                        <input class="form-control" type="text" readonly name="equipment[LogisticsAndMaterials]" />
+                        <div>
+                            <input type="checkbox" id="LogisticsAndMaterials_Pipeservices"
+                                name="LogisticsAndMaterials_Pipeservices" value="Pipe services" /><label
+                                for="LogisticsAndMaterials_Pipeservices">Pipe services</label>
+                            <input type="checkbox" id="LogisticsAndMaterials_Transport"
+                                name="LogisticsAndMaterials_Transport" value="Transport" /><label
+                                for="LogisticsAndMaterials_Transport">Transport</label>
+                            <input type="checkbox" id="LogisticsAndMaterials_Tramming"
+                                name="LogisticsAndMaterials_Tramming" value="Tramming & Rock Handling" /><label
+                                for="LogisticsAndMaterials_Tramming">Tramming & Rock Handling</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" id="ITComms">
+                        IT & Comms :
+                        <input class="form-control" type="text" readonly name="equipment[ITComms]" />
+                        <div>
+                            <input type="checkbox" id="ITComms_Sensing" name="ITComms_Sensing" value="Sensing" /><label
+                                for="ITComms_Sensing">Sensing</label>
+                            <input type="checkbox" id="ITComms_Controls" name="ITComms_Controls"
+                                value="Controls" /><label for="ITComms_Controls">Controls</label>
+                            <input type="checkbox" id="ITComms_Communications" name="ITComms_Communications"
+                                value="Communications" /><label for="ITComms_Communications">Communications</label>
+                            <input type="checkbox" id="ITComms_Data_Integration" name="ITComms_Data_Integration"
+                                value="Data Integration" /><label for="ITComms_Data_Integration">Data
+                                Integration</label>
+
+                            <input type="checkbox" id="ITComms_Data_Analysis" name="ITComms_Data_Analysis"
+                                value="Data Analysis" /><label for="ITComms_Data_Analysis">Data Analysis</label>
+
+                            <input type="checkbox" id="ITComms_Management_Systems" name="ITComms_Management_Systems"
+                                value="Management Systems" /><label for="ITComms_Management_Systems">Management
+                                Systems</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group" id="reefType">
+                        Reef type :
+                        <input class="form-control" type="text" readonly name="equipment[reefType]" />
+                        <div>
+                            <input type="checkbox" id="reefType_Massive" name="reefType_Massive"
+                                value="Massive" /><label for="reefType_Massive">Massive</label>
+                            <input type="checkbox" id="reefType_Narrow" name="reefType_Narrow" value="Narrow" /><label
+                                for="reefType_Narrow">Narrow</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mt-5">
+                    <div class="form-group">
+                        <button class="btn btn-gradient medium-btn">Submit</button>
+                        <button class="btn btn-darkgrey medium-btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+
+
+
+
+    <% include ../partials/footer %>

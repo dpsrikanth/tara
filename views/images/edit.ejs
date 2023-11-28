@@ -1,0 +1,64 @@
+<% include ../partials/header %>
+
+<div class="container ls">
+    <div class="row" style="margin: 50px auto 100px;">
+        <div class="col-md-12 mb-5"><h2 class="special-heading text-left">
+            <span class="text-capitalize">
+               Edit Image
+            </span>
+        </h2></div>
+        <div class="col-md-6">
+            <form action="/equipment/<%=equipment_id%>/images/<%=image._id%>?_method=PUT" method="POST"
+                enctype="multipart/form-data">
+                <div class="card border-info">
+                    <div class="card-header bg-info ">
+                        Upload Image
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center mb-3">
+                            <span><i class="fas fa-sync fa-1x" style="color: gray"></i> <i class="far fa-images fa-3x"
+                                    style="color: gray"></i></span>
+                        </div>
+                        <div class="form-group mb-5 mt-4">
+                            <div class="input-group mb-3">
+                                
+                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                        aria-describedby="inputGroupFileAddon01" name="imageFile" accept="image/*" required
+                                        onchange="ValidateImageFileSize(this)" readonly>
+                                    <label class="custom-file-label" for="inputGroupFile01"></label>
+                                
+                            </div>
+                        </div>
+                        <div class="form-group mt-5">
+                            <button type="submit" class="btn btn-gradient "><i class="fas fa-file-upload"></i> Submit</button>
+                                <a class="btn btn-darkgrey" href="/equipment/<%=equipment_id%>/edit"><i class="fas fa-arrow-circle-left"></i> Back</a>
+                        </div>
+                    </div>
+                  </div>
+                
+                
+            </form>
+           
+        </div>
+        <div class="col-md-6">
+
+            <div class="card">
+                <div class="card-header">
+                    Instructions
+                </div>
+                <div class="card-body">
+                    <em>We recommend the following specifications when uploading your images onto TARA:</em>
+                    <ul class="mb-3">
+                        <li><b>Maximum image size:</b> 1mb</li>
+                        <li><b>Aspect Ratio:</b> 16:10. For example 720 x 450, 1440 x 900 etc.</li>
+                        <li><em>Please double-check on the equipment page that your image displays correctly after
+                                uploading.</em></li>
+                    </ul>
+                </div>
+              </div>
+
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

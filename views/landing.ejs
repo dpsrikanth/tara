@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <title>Mining TARA</title>
+    <meta charset="utf-8">
+    <!--[if IE]>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<![endif]-->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="google" content="notranslate">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/animations.css">
+    <link rel="stylesheet" href="/stylesheets/font-awesome5.css">
+    <link rel="stylesheet" href="/stylesheets/icomoon.css">
+    <link rel="stylesheet" href="/stylesheets/main.css" class="color-switcher-link">
+    <link rel="stylesheet" href="/stylesheets/shop.css" class="color-switcher-link">
+    <script src="/scripts/vendor/modernizr-2.6.2.min.js"></script>
+
+    <!--[if lt IE 9]>
+		<script src="js/vendor/html5shiv.min.js"></script>
+		<script src="js/vendor/respond.min.js"></script>
+		<script src="js/vendor/jquery-1.12.4.min.js"></script>
+	<![endif]-->
+
+</head>
+
+<body>
+    <!--[if lt IE 9]>
+		<div class="bg-danger text-center">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/" class="color-main">upgrade your browser</a> to improve your experience.</div>
+	<![endif]-->
+
+    <div class="preloader">
+        <div class="preloader_image"></div>
+    </div>
+
+
+    <!-- wrappers for visual page editor and boxed version of template -->
+    <div id="canvas">
+        <div id="box_wrapper">
+
+            <div class="header header_absolute">
+
+                <header class="page_header header-1 ds bg-transparent">
+
+                    <div class="container-fluid">
+
+                        <div class="row d-flex align-items-center justify-content-center">
+                            <div class="col-xl-3 col-md-3 col-12 text-center">
+                                <a href="/" class="logo">
+                                    <img src="images/logo.png" alt="">
+
+                                </a>
+                            </div>
+                            <div class="col-xl-2 col-md-2 text-left">
+
+                            </div>
+                            <div class="col-xl-7 col-1 col-md-7 text-right">
+                                <!-- main nav start -->
+                                <nav class="top-nav">
+                                    <ul class="nav sf-menu sf-js-enabled sf-arrows">
+                                        <li>
+                                            <a href="equipment" class="btn btn-maincolor">Equipment</a>
+                                        </li>
+                                        <li>
+                                            <a href="/">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="/about-us">About TARA</a>
+                                            <ul>
+                                                <li><a href="/about-us">About MiningTARA</a></li>
+                                                <li><a href="/howtousetara">How To Use TARA</a></li>
+                                                <li><a href="/memsa">MEMSA</a></li>
+                                                <li><a href="/mandela">The Mandela Mining Precinct</a></li>
+                                                <!--<li><a href="/tech">Technology Development</a></li>-->
+                                                <li><a href="/trl">TRL Levels</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="/news">News</a>
+                                        </li>
+                                        <li>
+                                            <a href="contact">Contact</a>
+                                        </li>
+                                        <% if(!currentUser){ %>
+                                            <li>
+                                                <a href="/register">Sign Up</a>
+                                            </li>
+                                            <li>
+                                                <a href="/login">Login</a>
+                                            </li>
+                                            <% } else { %>
+                                                <%let str=(currentUser && currentUser.isAdmin) ? " (admin)" : "" %>
+                                                    <!--<li class="nav-item"><a href="/logout" class="nav-link">
+                                                            <%= currentUser.username %>
+                                                                <%=str%> Logout
+                                                        </a></li>-->
+                                                    <li class="nav-item"><a href="/logout" class="nav-link">Logout</a>
+                                                    </li>
+                                                    <li class="nav-item"><a href=<%="/users/" + currentUser._id %>
+                                                            class="nav-link">
+                                                            <%= currentUser.username %>
+                                                                <%=str%>
+                                                        </a></li>
+                                                    <% } %>
+
+
+
+                                                        <!-- contacts -->
+
+                                                        <!-- eof contacts -->
+                                    </ul>
+
+
+                                </nav>
+                                <!-- eof main nav -->
+                            </div>
+                            <!--<div class="col-xl-3 col-md-7 col-12  d-flex justify-content-md-end">
+                    <ul class="top-includes">
+                        <li class="metaphone">
+                            <a href="#">800 123 4567</a>
+                        </li>
+                        <li class="special-menu">
+                            <span class="toggle_menu toggle_menu_side header-slide toggle_menu_side_special"><span></span></span>
+                        </li>
+                    </ul>
+                    
+
+
+                </div>-->
+
+                        </div>
+
+                    </div>
+                    <!-- header toggler -->
+                    <span class="toggle_menu"><span>menu</span></span>
+                </header>
+            </div>
+
+            <section class="page_slider">
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li class="ds cover-image">
+                            <img src="images/slide01.jpg" alt="img">
+                            <div class="overlaymask"></div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="intro_layers_wrapper">
+                                            <div class="intro_layers">
+                                                <div class="intro_layer">
+                                                    <h6 class="intro_before_featured_word mb-2">About TARA</h6>
+                                                    <h2 class="text-capitalize intro_featured_word mb-3">
+                                                        Technology Availability Readiness Atlas (TARA)
+                                                    </h2>
+                                                    <p class="mb-3">TARA provides the opportunity to make mining safer,
+                                                        more
+                                                        efficient and cost-effective</p>
+                                                    <a href="/about-us" class="btn btn-outline-darkgrey">Read
+                                                        more</a>
+                                                    <!--<span class="text-divider">or</span>
+                                        <a href="#" class="btn just-link">Read more</a>-->
+                                                </div>
+                                            </div> <!-- eof .intro_layers -->
+                                        </div> <!-- eof .intro_layers_wrapper -->
+                                    </div> <!-- eof .col-* -->
+                                </div><!-- eof .row -->
+                            </div><!-- eof .container-fluid -->
+                        </li>
+                        <li class="ds cover-image">
+                            <img src="images/slide02.jpg" alt="img">
+                            <div class="overlaymask"></div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="intro_layers_wrapper">
+                                            <div class="intro_layers">
+                                                <div class="intro_layer">
+                                                    <h6 class="intro_before_featured_word mb-2">Mandela Mining Precinct
+                                                    </h6>
+                                                    <h2 class="text-capitalize intro_featured_word mb-3">
+                                                        The Establishment of the Mandela Mining Precinct
+                                                    </h2>
+                                                    <p class="mb-3">The Mandela Mining Precinct Partnership/A unique
+                                                        collaboration for innovation between the state and private
+                                                        sector</p>
+                                                    <a href="/mandela" class="btn btn-outline-darkgrey">Read more</a>
+                                                    <!--<span class="text-divider">or</span>
+                                        <a href="#" class="btn just-link">Request a Callback</a>-->
+                                                </div>
+                                            </div> <!-- eof .intro_layers -->
+                                        </div> <!-- eof .intro_layers_wrapper -->
+                                    </div> <!-- eof .col-* -->
+                                </div><!-- eof .row -->
+                            </div><!-- eof .container-fluid -->
+                        </li>
+                        <li class="ds cover-image">
+                            <img src="images/slide03.jpg" alt="img">
+                            <div class="overlaymask"></div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="intro_layers_wrapper">
+                                            <div class="intro_layers">
+                                                <div class="intro_layer">
+                                                    <h6 class="intro_before_featured_word mb-2">Industry</h6>
+                                                    <h2 class="text-capitalize intro_featured_word mb-3">
+                                                        Know How Solutions
+                                                    </h2>
+                                                    <p class="mb-3">An industry which offers innovation based on
+                                                        experience</p>
+                                                    <a href="/memsa" class="btn btn-outline-darkgrey">Read
+                                                        more</a>
+                                                    <!--<span class="text-divider">or</span>
+                                        <a href="#" class="btn just-link">Request a Callback</a>-->
+                                                </div>
+                                            </div> <!-- eof .intro_layers -->
+                                        </div> <!-- eof .intro_layers_wrapper -->
+                                    </div> <!-- eof .col-* -->
+                                </div><!-- eof .row -->
+                            </div><!-- eof .container-fluid -->
+                        </li>
+
+
+                    </ul>
+                </div> <!-- eof flexslider -->
+            </section>
+            <section class="ls ms bluestrip map-section">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-lg-5 leftSearch">
+                            <div class="widget widget_product_search">
+                                <div id="searchWrapper" style="position: relative;"
+                                    class="widget widget_search pl-0 ml-0">
+                                    <label for="search-form-widget">
+                                        <span class="screen-reader-text">Search for:</span>
+                                    </label>
+                                    <input type="search" autocomplete="off" onkeyup="handleSearchChange(this)"
+                                        id="search-form-widget" class="search-field" placeholder="Equipment Search"
+                                        name="search">
+                                    <button onclick="handleSuggestionClick(document.getElementById('search-form-widget').value,null)" type="submit" class="search-submit">
+                                        <span class="screen-reader-text">Search</span>
+                                    </button>
+                                    <form id="newSearchForm" action="/equipment/home/search" method="GET" style="display: none;">
+                                        <input name="search" id="searchNext" value="" />
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-7 rightBlock">
+                            <h3>Search Equipment Database Here</h3>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="ls  s-py-md-90 s-py-60 text-sm-left text-center container-px-0"
+                style="background-color: #f5f5f5;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 col-12 col-lg-12 divtopCategories">
+                            <div class="topCategories">
+                                <div class="topCategoriesText">
+                                    <h6>Some of our </h6>
+                                    <h4>Top Categories</h4>
+                                    <p>Explore equipment by key functional categories, and find more options to refine
+                                        your search on the Equipment page</p>
+                                </div>
+
+                            </div>
+                            <div class="topCategoriesItems">
+                                <div class="container">
+                                    <div class="row">
+
+                                        <div class="col-lg-4 col-xs-12 text-center">
+                                            <div class="box"
+                                                onclick="window.location.href = '/equipment?miningMethod=&mineral=Gold+%26+Platinum%2CDiamonds%2CBase+Metals&miningActivity=&miningCycle=Access+Development%2CStoping&miningType=&energySource=&LogisticsAndMaterials=&ITComms=&reefType=';">
+                                                <img src="/images/icons/icon1.png">
+                                                <div class="box-title">
+                                                    <h6>Access Development and Stoping (Hard Rock)</h6>
+                                                </div>
+                                                <!--<div class="box-text">
+                                                    <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam.</span>
+                                                </div>-->
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-xs-12  text-center">
+                                            <div class="box"
+                                                onclick="window.location.href = '/equipment?miningMethod=&mineral=Coal&miningActivity=&miningCycle=Access+Development%2CStoping&miningType=&energySource=&LogisticsAndMaterials=&ITComms=&reefType=';">
+                                                <img src="/images/icons/icon2.png">
+                                                <div class="box-title">
+                                                    <h6>Access Development and Stoping (Soft Rock)</h6>
+                                                </div>
+                                                <!--<div class="box-text">
+                                                    <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam.</span>
+                                                </div>-->
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-xs-12 text-center">
+                                            <div class="box"
+                                                onclick="window.location.href = '/equipment?miningMethod=&mineral=&miningActivity=&miningCycle=&miningType=&energySource=&LogisticsAndMaterials=Pipe+Services%2CTransport%2CTramming+%26+Rock+Handling&ITComms=&reefType=';">
+                                                <img src="/images/icons/icon3.png">
+                                                <div class="box-title">
+                                                    <h6>Logistics & Materials Handling</h6>
+                                                </div>
+                                                <!--<div class="box-text">
+                                                    <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam.</span>
+                                                </div>-->
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-xs-12 text-center">
+                                            <div class="box"
+                                                onclick="window.location.href = '/equipment?miningMethod=&mineral=&miningActivity=&miningCycle=&miningType=&energySource=&LogisticsAndMaterials=&ITComms=Sensing%2CControls%2CCommunications%2CData+Integration%2CData+Analysis%2CManagement+Systems&reefType=';">
+                                                <img src="/images/icons/icon5.png">
+                                                <div class="box-title">
+                                                    <h6>IT & Communications </h6>
+                                                </div>
+                                                <!--<div class="box-text">
+                                                    <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam.</span>
+                                                </div>-->
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-xs-12 text-center">
+                                            <div class="box"
+                                                onclick="window.location.href = '/equipment?miningMethod=&mineral=&miningActivity=&miningCycle=&miningType=Mineral+Processing+and+Beneficiation&energySource=&LogisticsAndMaterials=&ITComms=&reefType=';">
+                                                <img src="/images/icons/icon4.png">
+                                                <div class="box-title">
+                                                    <h6>Mineral Processing</h6>
+                                                </div>
+                                                <!--<div class="box-text">
+                                                    <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam.</span>
+                                                </div>-->
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-xs-12 text-center">
+                                            <div class="box"
+                                                onclick="window.location.href = '/equipment?miningMethod=&mineral=&miningActivity=Supporting&miningCycle=&miningType=&energySource=&LogisticsAndMaterials=&ITComms=&reefType=';">
+                                                <img src="/images/icons/icon8.png">
+                                                <div class="box-title">
+                                                    <h6>Roof Support</h6>
+                                                </div>
+                                                <!--<div class="box-text">
+                                                    <span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam.</span>
+                                                </div>-->
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!--
+            <section class="ds text-sm-left text-center container-px-0 c-gutter-0">
+                <div class="container-fluid">
+                    <div class="row service-v2">
+                        <div class="col-md-2">
+                            <div class="icon-box service-single with-icon layout2 ds text-center">
+                                <a class="link-icon" href="/equipment?miningCycle=Mine+Development">
+                                    <div class="icon-styled  fs-50">
+                                        <i class="fas fa-snowplow"></i>
+                                    </div>
+                                </a>
+                                <a href="/equipment?miningCycle=Mine+Development">
+                                    <h5>
+                                        Mine development
+                                    </h5>
+                                </a>
+
+                                <p>Lorem ipsum dolor amet consectetur</p>
+                                <a class="btn btn-outline-darkgrey" href="/equipment?miningCycle=Mine+Development">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="icon-box service-single with-icon layout2 ds text-center">
+                                <a class="link-icon" href="/equipment?miningCycle=Access+Development">
+                                    <div class="icon-styled  fs-50">
+                                        <i class="fas fa-road"></i>
+                                    </div>
+                                </a>
+                                <a href="/equipment?miningCycle=Access+Development">
+                                    <h5>
+                                        Access Development
+                                    </h5>
+                                </a>
+
+                                <p>Adipisicing elit, sed do eiusmod tempor</p>
+                                <a class="btn btn-outline-darkgrey" href="/equipment?miningCycle=Access+Development">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="icon-box service-single with-icon layout2 ds text-center">
+                                <a class="link-icon" href="/equipment?miningCycle=Stopping">
+                                    <div class="icon-styled  fs-50">
+                                        <i class="fas fa-life-ring"></i>
+                                    </div>
+                                </a>
+                                <a href="/equipment?miningCycle=Stopping">
+                                    <h5>
+                                        Stoping
+                                    </h5>
+                                </a>
+
+                                <p>Incididunt labore dolore magna aliqua</p>
+                                <a class="btn btn-outline-darkgrey" href="/equipment?miningCycle=Stopping">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="icon-box service-single with-icon layout2 ds text-center">
+                                <a class="link-icon" href="/equipment?miningCycle=Logistics">
+                                    <div class="icon-styled  fs-50">
+                                        <i class="fa fa-car"></i>
+                                    </div>
+                                </a>
+                                <a href="/equipment?miningCycle=Logistics">
+                                    <h5>
+                                        Logistics
+                                    </h5>
+                                </a>
+
+                                <p>Utenim adminim veniam quis nostrud </p>
+                                <a class="btn btn-outline-darkgrey" href="/equipment?miningCycle=Logistics">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="icon-box service-single with-icon layout2 ds text-center">
+                                <a class="link-icon" href="#">
+                                    <div class="icon-styled  fs-50">
+                                        <i class="fas fa-broadcast-tower"></i>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <h5>
+                                        Communication
+                                    </h5>
+                                </a>
+
+                                <p>Ullamco laboris nisi ut aliquip veniam exea</p>
+                                <a class="btn btn-outline-darkgrey" href="#">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="icon-box service-single with-icon layout2 ds text-center">
+                                <a class="link-icon" href="#">
+                                    <div class="icon-styled  fs-50">
+                                        <i class="fas fa-grip-horizontal"></i>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <h5>
+                                        Others
+                                    </h5>
+                                </a>
+
+                                <p>Commodo conquat duis aute irure dolor</p>
+                                <a class="btn btn-outline-darkgrey" href="#">
+                                    <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+-->
+
+
+            <section class="ls s-py-60 text-sm-left text-center container-px-0" style="background-color: #f5f5f5; ">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-12 col-lg-6">
+                            <div class="content-center">
+
+                                <h3 class="special-heading text-sm-left text-center"> <span class="text-capitalize">
+                                        Technology Availability Readiness Atlas (TARA) </span> </h3>
+                                <div>
+                                    <p>TARA provides the opportunity to make mining safer, more efficient and
+                                        cost-effective;</p>
+                                    <p><span class="excerpt">Technology:</span> TARA aims to capture technologies that
+                                        South African Original Equipment Manufacturers (OEMs) have developed or are
+                                        developing for the mining industry.</p>
+                                    <p><span class="excerpt">Availability:</span> Allows Original Equipment
+                                        Manufacturers (OEMs) to demonstrate their current commercially available
+                                        technologies.</p>
+                                    <p><span class="excerpt">Readiness:</span> Allows OEMs to demonstrate (with
+                                        necessary protection) technologies which are being developed but not necessarily
+                                        commercially available yet and/or explore partnerships or collaboration
+                                        opportunities.</p>
+                                    <p><span class="excerpt">Atlas:</span> Allows for better access and increased
+                                        visibility of equipment and technologies to the mining industry</p>
+                                </div>
+
+                                <div class="divider--10"></div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-12 col-lg-6" style="display: inherit;">
+                            <img src="images/truck.png" alt="Technology Availability Readiness Atlas (TARA)"
+                                class="response">
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="ls  s-py-60 text-sm-left text-center container-px-0 imageBG">
+                <div class="halfBlock">
+                    <div class="container ">
+                        <div class="row">
+
+                            <div class="col-xs-12 col-12 col-lg-8">
+                                <div class="">
+                                    <h3 class=""> <span class="text-capitalize">
+                                            TARA Objectives </span> </h3>
+
+                                    <ul class="list-styled">
+                                        <li>Provide the mining industry with access to the capabilities and offerings of
+                                            local OEMs.</li>
+                                        <li>Providing specification and state of readiness of technologies and equipment
+                                            offered by local OEMs.</li>
+                                        <li>Create a platform for local suppliers and products to access the local
+                                            mining
+                                            supply-chain.</li>
+                                        <li>Provide researchers with information catalogues about available products.
+                                        </li>
+                                        <li>Validation of equipment specifications as claimed by the OEM.</li>
+                                    </ul>
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-12 col-lg-4">
+                                <h3>Recent Developments</h3>
+                                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img class="d-block w-100 dotm-overlay" src="images/recent_001.jpg"
+                                                alt="First slide">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h5>Research</h5>
+                                                <p>LONGEVITY OF CURRENT MINES</p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100 dotm-overlay" src="images/recent_002.jpg"
+                                                alt="Second slide">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h5>Research</h5>
+                                                <p>LONGEVITY OF CURRENT MINES</p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img class="d-block w-100 dotm-overlay" src="images/recent_003.jpg"
+                                                alt="Third slide">
+                                            <div class="carousel-caption d-none d-md-block">
+                                                <h5>Research</h5>
+                                                <p>LONGEVITY OF CURRENT MINES</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="clear"></div>
+
+
+
+            <section class="ls ms bluestrip map-section">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-lg-5 newsleftBlock">
+                            <h4>Subscribe to Our Newsletter</h4>
+                            <p>Receive quarterly updates on our latest equipment</p>
+
+                        </div>
+
+                        <div class="col-lg-7 newsrightBlock">
+                            <div class="widget widget_mailchimp">
+
+                                <form class="signup">
+                                    <label for="mailchimp_email">
+                                        <span class="screen-reader-text">Subscribe:</span>
+                                    </label>
+
+                                    <input id="mailchimp_email" name="email" type="email"
+                                        class="form-control mailchimp_email" placeholder="Email Address">
+
+                                    <button type="submit" class="search-submit">
+                                        <span class="screen-reader-text">Subscribe</span>
+                                    </button>
+                                    <div class="response"></div>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <div class="container">
+                <div class="customer-logos slider d-flex">
+                    <div class="slide"><img src="images/logos/CSIR.jpg"></div>
+                    <div class="slide"><img src="images/logos/Mining-Equipment-Manufacturers-of-South-Africa.jpg"></div>
+                    <div class="slide"><img src="images/logos/MCSA.jpg"></div>
+                    <div class="slide"><img src="images/logos/Coaltech.jpg"></div>
+                    <div class="slide"><img src="images/logos/Department-of-Mineral-Resources.jpg"></div>
+                    <div class="slide"><img src="images/logos/Department-of-Planning-Monitoring-and-Evaluation.jpg">
+                    </div>
+                    <div class="slide"><img src="images/logos/Department-of-Trade-and-Industry.jpg"></div>
+                    <div class="slide"><img src="images/logos/Geological-Society-of-South-Africa.jpg"></div>
+                    <div class="slide"><img src="images/logos/Science-and-Innovation.jpg"></div>
+                    <div class="slide"><img src="images/logos/South-African-Minerals-Processing-Cluster.jpg"></div>
+                    <div class="slide"><img
+                            src="images/logos/The-Southern-African-Institute-of-Mining-and-Metallurgy.jpg"></div>
+                    <div class="slide"><img src="images/logos/University-of-Johannesburg.jpg"></div>
+                    <div class="slide"><img src="images/logos/University-of-Pretoria.jpg"></div>
+                    <div class="slide"><img src="images/logos/University-of-the-Witwatersrand.jpg"></div>
+                </div>
+            </div>
+
+            <!-- Video in Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+
+                        <div class="modal-body">
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <!-- 16:9 aspect ratio -->
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always"
+                                    allow="autoplay"></iframe>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+
+        $(document).ready(function () {
+            // Gets the video src from the data-src on each button
+            var $videoSrc;
+            $('.video-btn').click(function () {
+                $videoSrc = $(this).data("src");
+                //alert($videoSrc);
+                console.log($videoSrc);
+                // when the modal is opened autoplay it  
+                $('#myModal').on('shown.bs.modal', function (e) {
+                    // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+                    $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
+                })
+                // stop playing the youtube video when I close the modal
+                $('#myModal').on('hide.bs.modal', function (e) {
+                    // a poor man's stop video
+                    $("#video").attr('src', $videoSrc);
+                })
+                // document ready  
+            });
+
+
+        });
+
+    </script>
+    <% include partials/footer%>

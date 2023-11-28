@@ -1,0 +1,474 @@
+<% include ../partials/header %>
+
+<section class="s-py-60 c-gutter-30">
+  <div class="container">
+    <div class="row">
+      <main class="col-lg-12 col-xl-12">
+        <div class="product type-product">
+
+          <div class="images" data-columns="4">
+            <figure>
+              <% equipment.images.forEach(function(image){ %>
+              <div data-thumb="<%=image.file%>">
+                <a href="<%=image.file%>">
+                  <img src="<%=image.file%>" alt="" data-caption="" data-src="<%=image.file%>" data-large_image="<%=image.file%>" data-large_image_width="1000" data-large_image_height="1000">
+                </a>
+              </div>
+              <% }) %>
+
+            </figure>
+          </div>
+
+          <div class="summary entry-summary">
+
+            <h1 class="product_title entry-title">
+              <%=equipment.name%>
+            </h1>
+            <!--<div class="woocommerce-product-rating">
+                                      <div class="star-rating">
+                                          <span style="width:72.6%">Rated <strong class="rating">4.33</strong> out of 5 based on <span class="rating">3</span> customer ratings</span>
+                                      </div>
+
+                                      <a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<span class="count">3</span> customer
+                                          reviews)</a>
+                                  </div>-->
+
+
+            <div>
+
+
+              <h6 class="mb-2">Supplier Information</h6>
+              <p><span class="strong">Name: </span>
+                <%=user.companyName%>
+                <br><span class="strong">Contact: </span>
+                <%=user.firstname%>
+                <%=user.lastname%>
+                <br><span class="strong">Phone: </span>
+                <%=user.phone%>
+                <br><span class="strong">Email: </span>
+                <a href="mailto:<%=user.email%>" class="btn btn-link mb-0">
+                  <%=user.email%>
+                </a>
+
+                <br><span class="strong">Website: </span><a href=" <%=user.website%>" target="blank" class="btn-link mb-0 pl-0">
+                  <%=user.website%>
+                </a>
+                <br><span class="strong">Address: </span>
+
+                <%=user.address.street1%>, <%=user.address.street2%>,
+                <%=user.address.city%>,
+                <%=user.address.province%>, <%=user.address.code%>
+
+            </div>
+            <div class="mt-3">
+              <h6 class="mb-2">Datasheets</h6>
+              <%equipment.datasheets.forEach(function(datasheet){%>
+
+              <div class="row mb-3">
+                <div class="col-md-9 ">
+                  <a class="btn btn-link py-0 px-0" href="<%=datasheet.file%>">
+                    <%=datasheet.filename%>
+                  </a>
+                </div>
+                <div class="col-md-1">
+                  <a class="btn btn-link py-0 px-0" href="/equipment/<%=equipment._id%>/datasheets/<%=datasheet._id%>/edit"><i class="far fa-edit"></i></a>
+                </div>
+                <div class="col-md-1">
+                  <form action="/equipment/<%=equipment._id%>/datasheets/<%=datasheet._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-link  py-0 px-0"><i class="far fa-trash-alt"></i></button>
+                  </form>
+                </div>
+              </div>
+              <% }) %>
+            </div>
+            <!--<% if(currentUser && equipment.author.id.equals(currentUser._id) || currentUser &&
+                            currentUser.isAdmin){ %>
+                            <div class="mt-3">
+                                <a href="/equipment/<%=equipment._id%>/edit" class=""><i
+                                        class="far fa-edit"></i> Edit
+                                    Equipment</a>
+                            </div>
+                            <% } %>-->
+
+            <div class="mb-3">
+
+              <% if(equipment.datasheets.length < 3 || currentUser && currentUser.isAdmin) { %>
+              <a class="btn btn-outline-info text-center" href="/equipment/<%=equipment._id%>/datasheets/new"><i class="fas fa-plus"></i>
+                Add Datasheet</a>
+              <% } else { %>
+              <a class="btn btn-outline-info text-center disabled" href=""><i class="fas fa-plus"></i>
+                Add Datasheet</a>
+              <% } %>
+
+            </div>
+
+
+          </div>
+          <!-- .summary -->
+
+          <!--
+      IF WE WANT to create bootstrap tabs:
+      in WordPress theme We shall override tabs template
+      adding 'nav nav-tabs' to 'ul.tabs'
+      adding 'nav-item' to 'li'
+      adding 'nav-link' to 'a'
+      wrap all tabs to tab-content
+      but .active is turns not on A but on LI, not as in bootstrap
+  -->
+          <div class="clear"></div>
+
+          <form action="/equipment/<%=equipment._id%>?_method=PUT" method="POST">
+            <div id="accordion00" role="tablist">
+              <div class="card">
+                <div class="card-header" role="tab" id="collapse00_header">
+                  <h5>
+                    <a data-toggle="collapse" href="#" data-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                      Edit Images
+                    </a>
+                  </h5>
+                </div>
+
+                <!--<div class="card-header bg-dark text-white"><em>Editing</em> <%=equipment.name%></div>-->
+                <div style="text-align: left;" id="collapse10" class="collapse" role="tabpanel" aria-labelledby="collapse10_header" data-parent="#accordion00">
+                  <div class="card-body">
+                    <% if(equipment.images.length < 3 || currentUser && currentUser.isAdmin) {
+                                                %>
+                    <a class="btn btn-outline-info" href="/equipment/<%=equipment._id%>/images/new"><i class="fas fa-plus"></i> Add Image</a>
+                    <% } else { %>
+                    <a class="btn btn-outline-info  disabled" href=""><i class="fas fa-plus"></i>
+                      Add Image</a>
+                    <% } %>
+
+                    <div class="row">
+                      <%equipment.images.forEach(function(image){%>
+                      <div class="col-md-12">
+                        <img src="<%=image.file%>" onerror="this.src='/ui/images/default/unavailable-image.png'" class="card-img-top border-secondary" alt="<%=equipment.name%>">
+                        <div class="my-2">
+                          <a class="btn btn-outline-info  delete-form" href="/equipment/<%=equipment._id%>/images/<%=image._id%>/edit"><i class="far fa-edit"></i> Edit Image</a>
+                         <!-- <form class="delete-form" action="/equipment/<%=equipment._id%>/images/<%=image._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Delete
+                              Image</button>
+                          </form>-->
+                        </div>
+                      </div>
+                      <% }) %>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="card">
+                <div class="card-header" role="tab" id="collapse00_header">
+                  <h5>
+                    <a data-toggle="collapse" href="#" data-target="#collapse00" aria-expanded="false" aria-controls="collapse00">
+                      Description
+                    </a>
+                  </h5>
+                </div>
+
+                <div style="text-align: left;" id="collapse00" class="collapse show" role="tabpanel" aria-labelledby="collapse00_header" data-parent="#accordion00">
+                  <div class="card-body">
+                    <textarea class="form-control" id="description" rows="5" cols="30" name="equipment[description]" required><%=equipment.description%></textarea>
+                    <!--<p style="white-space: pre-line; text-align: left;"><%=equipment.description%></p>-->
+
+
+                  </div>
+
+                </div>
+              </div>              
+              <div class="card">
+                <div class="card-header" role="tab" id="collapse01_header">
+                  <h5>
+                    <a data-toggle="collapse" href="#" data-target="#collapse01" aria-expanded="false" aria-controls="collapse01">
+                      General Product Information
+                    </a>
+                  </h5>
+                </div>
+
+                <div id="collapse01" class="collapse show" role="tabpanel" aria-labelledby="collapse01_header" data-parent="#accordion01">
+                  <div class="card-body">
+
+                    <table class="shop_attributes" id="tableedit">
+                      <!--<thead class="thead-dark">
+                                            <tr class="d-flex">
+                                                <th class="col-sm-12" scope="col">Specifications</th>
+                                            </tr>
+                                        </thead>-->
+                      <tbody>
+                        <tr class="d-flex">
+                          <th class="col-sm-3" scope="row">Name:<span style="color: red;">*</span></th>
+                          <td class="col-sm-9"><input class="form-control" type="text" value="<%=equipment.name%>" name="equipment[name]" required /></td>
+                        </tr>
+                         <tr class="d-flex">
+                          <th class="col-sm-3" scope="row">Equipment Type:<span style="color: red;">*</span></th>
+                          <td class="col-sm-9"><input class="form-control" type="text" value="<%=equipment.eqtype%>" name="equipment[eqtype]" required /></td>
+                        </tr>
+                       
+                        <tr class="d-flex">
+                          <th class="col-sm-3" scope="row">OEM:<span style="color: red;">*</span></th>
+                          <td class="col-sm-9"><input class="form-control" type="text" value="<%=equipment.oem%>" name="equipment[oem]" required /></td>
+                        </tr>
+                        <tr class="d-flex">
+                          <th class="col-sm-3" scope="row">TRL:<span style="color: red;">*</span></th>
+                          <td class="col-sm-7">
+                            <input class="form-control" readonly id="txttrl" type="text" value="<%=equipment.trl%>" name="equipment[trl]" pattern="^TRL[1-9]$" title="Format e.g. TRL1, TRL2, TRL9..." />
+                            <select id="ddltrl" onchange="document.getElementById('txttrl').value=document.getElementById('ddltrl').value;">
+                              <option value="">Select</option>
+                              <option value="TRL1">TRL1</option>
+                              <option value="TRL2">TRL2</option>
+                              <option value="TRL3">TRL3</option>
+                              <option value="TRL4">TRL4</option>
+                              <option value="TRL5">TRL5</option>
+                              <option value="TRL6">TRL6</option>
+                              <option value="TRL7">TRL7</option>
+                              <option value="TRL8">TRL8</option>
+                              <option value="TRL9">TRL9</option>
+                              </select>
+                          </td>
+                          <td class="col-sm-2">
+                            <button type="button" class="btn btn-link py-0" data-toggle="popover" data-img="/ui/images/default/nasa-trl-meter.png" title="TRL Chart"><i class="fas fa-info-circle"></i>
+                              Ref.
+                            </button>
+                          </td>
+                        </tr>
+                        <!--<tr class="d-flex">
+                            <th class="col-sm-3 d-none d-sm-table-cell" scope="row">Description:<span style="color: red;">*</span></th>
+                            <td class="col-sm-9"><textarea class="form-control" id="description" rows="5" cols="30"
+                                    name="equipment[description]" required><%=equipment.description%></textarea>
+                            </td>
+                        </tr>-->
+                         <tr class="d-flex" id="miningType">
+                          <th class="col-sm-3" scope="row">Mining Type:</th>
+                          <td class="col-sm-9">
+                            <input class="form-control" type="text" readonly value="<%=equipment.type%>" name="equipment[type]" required />
+
+                            <input type="checkbox" id="type_Surfacemining" name="type_Surfacemining" value="Surface mining" /><label for="type_Surfacemining">Surface mining</label>
+                            <input type="checkbox" id="type_Undergroundmining" name="type_Undergroundmining" value="Underground mining" /><label for="type_Undergroundmining">Underground mining</label>
+                            <input type="checkbox" id="type_MineralProcessingandBeneficiation" name="type_MineralProcessingandBeneficiation" value="Mineral Processing and Beneficiation" /><label for="type_MineralProcessingandBeneficiation">Mineral
+                              Processing and Beneficiation</label>
+
+                          </td>
+                        </tr>
+                        
+                        <tr class=" d-flex" id="miningCycle">
+                          <th class="col-sm-3" scope="row">Mine Development:
+                          </th>
+                          <td class="col-sm-9"><input class="form-control" type="text" readonly value="<%=equipment.miningCycle%>" name="equipment[miningCycle]" required />
+                            <input type="checkbox" id="mineCycle_Prospecting" name="mineCycle_Prospecting" value="Prospecting" />
+                            <label for="mineCycle_Prospecting">Prospecting</label>
+
+                            <input type="checkbox" id="mineCycle_ShaftSinking" name="mineCycle_ShaftSinking" value="Shaft Sinking" />
+                            <label for="mineCycle_ShaftSinking">Shaft Sinking</label>
+                            
+                            <input type="checkbox" id="mineCycle_AccessDevelopment" name="mineCycle_AccessDevelopment" value="Access Development" />
+                            <label for="mineCycle_AccessDevelopment">Access Development</label>
+
+                            <input type="checkbox" id="mineCycle_Development" name="mineCycle_Development" value="Development" />
+                            <label for="mineCycle_Development">Development</label>
+
+                            <input type="checkbox" id="mineCycle_Stoping" name="mineCycle_Stoping" value="Stoping" />
+                            <label for="mineCycle_Stoping">Stoping</label>
+                            
+                          </td>
+                        </tr>
+                        <tr class="d-flex" id="mineActivity">
+                          <th class="col-sm-3" scope="row">Mining Activity:
+                          </th>
+                          <td class="col-sm-9"><input class="form-control" type="text" readonly readonly value="<%=equipment.mineActivity%>" name="equipment[mineActivity]" required />
+
+                            <input type="checkbox" id="miningActivities_Drilling" name="miningActivities_Drilling" value="Drilling" /><label for="miningActivities_Drilling">Drilling</label>
+                            <input type="checkbox" id="mineCycle_Blasting" name="mineCycle_Blasting" value="Blasting" /><label for="mineCycle_Blasting">Blasting</label>
+                            <input type="checkbox" id="mineCycle_Cleaning" name="mineCycle_Cleaning" value="Cleaning" /><label for="mineCycle_Cleaning">Cleaning</label>
+                            <input type="checkbox" id="mineCycle_Supporting" name="mineCycle_Supporting" value="Supporting" /><label for="mineCycle_Supporting">Supporting</label>                            
+                          </td>
+                        </tr>
+                        <tr class="d-flex" id="miningMethod">
+                          <th class="col-sm-3" scope="row">Mining Method:
+                          </th>
+                          <td class="col-sm-9"><input class="form-control" type="text" readonly value="<%=equipment.miningMethod%>" name="equipment[miningMethod]" required />
+                            <input type="checkbox" id="miningMethod_Mechanised" name="miningMethod_Mechanised" value="Mechanised" /><label for="miningMethod_Mechanised">Mechanised</label>
+                            <input type="checkbox" id="mineCycle_Conventional" name="mineCycle_Conventional" value="Conventional" /><label for="mineCycle_Conventional">Conventional</label>
+                            <input type="checkbox" id="mineCycle_Hybrid" name="mineCycle_Hybrid" value="Hybrid" /><label for="mineCycle_Hybrid">Hybrid</label>
+                             <input type="checkbox" id="mineCycle_Autonomous" name="mineCycle_Autonomous" value="Autonomous" /><label for="mineCycle_Autonomous">Autonomous</label>
+                          </td>
+                        </tr>
+                        <tr class="d-flex" id="mineral">
+                          <th class="col-sm-3" scope="row">Mineral:
+                          </th>
+                          <td class="col-sm-9"><input class="form-control" type="text" readonly value="<%=equipment.mineral%>" name="equipment[mineral]" required />
+
+                            <input type="checkbox" id="mineral_Gold" name="mineral_Gold" value="Gold & Platinum" /><label for="mineral_Gold">Gold & Platinum</label>
+                            <input type="checkbox" id="mineral_Coal" name="mineral_Coal" value="Coal" /><label for="mineral_Coal">Coal</label>
+                            <input type="checkbox" id="mineral_Diamonds" name="mineral_Diamonds" value="Diamonds" /><label for="mineral_Diamonds">Diamonds</label>
+                             <input type="checkbox" id="mineral_BaseMetals" name="mineral_BaseMetals" value="Base Metals" /><label for="mineral_BaseMetals">Base Metals</label>
+                              <input type="checkbox" id="mineral_Other" name="mineral_Other" value="Other" /><label for="mineral_Other">Other</label>                             
+                          </td>
+                        </tr>
+                        
+                        <tr class="d-flex">
+                          <th class="col-sm-3" scope="row">Visibility:<button type="button" class="btn btn-link py-0" data-toggle="popover" data-content='Please indicate whether this technology is to be viewed in private or public mode:
+                                                        public:  can be viewed by any TARA user.
+                                                        private:  cannot be viewed by any TARA user except for admin managers. Acceptable values are: "public", "Public", "private", "Private".
+                                                        ' title="Visibility"><i class="fas fa-info-circle"></i>
+                            </button></th>
+                          <td class="col-sm-9"><input class="form-control" type="text" value="<%=equipment.visibility%>" name="equipment[visibility]" /></td>
+                        </tr>
+                        <tr class="d-flex" id="energySource">
+                          <th class="col-sm-3" scope="row">Energy Source:</th>
+                          <td class="col-sm-9"><input class="form-control" type="text" readonly value="<%=equipment.energySource%>" name="equipment[energySource]" />
+
+
+                            <input type="checkbox" id="energySource_Pneumatic" name="energySource_Pneumatic" value="Pneumatic" /><label for="energySource_Pneumatic">Pneumatic</label>
+                            <input type="checkbox" id="energySource_Waterhydraulic" name="energySource_Waterhydraulic" value="Water hydraulic" /><label for="energySource_Waterhydraulic">Water
+                              hydraulic</label>
+                            <input type="checkbox" id="energySource_Electric_AC" name="energySource_Electric_AC" value="Electric AC" /><label for="energySource_Electric_AC">Electric AC</label>
+
+                            <input type="checkbox" id="energySource_Diesel_Electro-hydraulic" name="energySource_Diesel_Electro-hydraulic" value="Diesel Electro-hydraulic" /><label for="energySource_Diesel_Electro-hydraulic">Diesel
+                              Electro-hydraulic</label>
+                            <input type="checkbox" id="energySource_Battery" name="energySource_Battery" value="Battery" /><label for="energySource_Battery">Battery</label>
+                            <input type="checkbox" id="energySource_Fuel_Cell" name="energySource_Fuel_Cell" value="Fuel Cell" /><label for="energySource_Fuel_Cell">Fuel Cell</label>
+                          </td>
+                        </tr>
+                        <tr class="d-flex" id="LogisticsAndMaterials">
+                          <th class="col-sm-3" scope="row">Logistics & materials
+                            handling:</th>
+                          <td class="col-sm-9"><input class="form-control" type="text" readonly value="<%=equipment.LogisticsAndMaterials%>" name="equipment[LogisticsAndMaterials]" />
+
+
+                            <input type="checkbox" id="LogisticsAndMaterials_Pipeservices" name="LogisticsAndMaterials_Pipeservices" value="Pipe services" /><label for="LogisticsAndMaterials_Pipeservices">Pipe
+                              services</label>
+                            <input type="checkbox" id="LogisticsAndMaterials_Transport" name="LogisticsAndMaterials_Transport" value="Transport" /><label for="LogisticsAndMaterials_Transport">Transport</label>
+                            <input type="checkbox" id="LogisticsAndMaterials_Tramming" name="LogisticsAndMaterials_Tramming" value="Tramming & Rock Handling" /><label for="LogisticsAndMaterials_Tramming">Tramming & Rock
+                              Handling</label>
+
+                          </td>
+                        </tr>
+                        <tr class="d-flex" id="ITComms">
+                          <th class="col-sm-3" scope="row">IT & Comms :</th>
+                          <td class="col-sm-9"><input class="form-control" type="text" readonly value="<%=equipment.ITComms%>" name="equipment[ITComms]" />
+
+
+                            <input type="checkbox" id="ITComms_Sensing" name="ITComms_Sensing" value="Sensing" /><label for="ITComms_Sensing">Sensing</label>
+                            <input type="checkbox" id="ITComms_Controls" name="ITComms_Controls" value="Controls" /><label for="ITComms_Controls">Controls</label>
+                            <input type="checkbox" id="ITComms_Communications" name="ITComms_Communications" value="Communications" /><label for="ITComms_Communications">Communications</label>
+                            <input type="checkbox" id="ITComms_Data_Integration" name="ITComms_Data_Integration" value="Data Integration" /><label for="ITComms_Data_Integration">Data Integration</label>
+
+                            <input type="checkbox" id="ITComms_Data_Analysis" name="ITComms_Data_Analysis" value="Data Analysis" /><label for="ITComms_Data_Analysis">Data Analysis</label>
+
+                            <input type="checkbox" id="ITComms_Management_Systems" name="ITComms_Management_Systems" value="Management Systems" /><label for="ITComms_Management_Systems">Management
+                              Systems</label>
+                          </td>
+                        </tr>
+                        <tr class="d-flex" id="reefType">
+                          <th class="col-sm-3" scope="row">Reef type :</th>
+                          <td class="col-sm-9"><input class="form-control" type="text" readonly value="<%=equipment.reefType%>" name="equipment[reefType]" />
+
+                            <input type="checkbox" id="reefType_Massive" name="reefType_Massive" value="Massive" /><label for="reefType_Massive">Massive</label>
+                            <input type="checkbox" id="reefType_Narrow" name="reefType_Narrow" value="Narrow" /><label for="reefType_Narrow">Narrow</label>
+                          </td>
+                        </tr>
+                        <% if(currentUser && currentUser.isAdmin){ %>
+                        <tr class="d-flex">
+                          <th class="col-sm-3" scope="row">Verified:</th>
+                          <td class="col-sm-9"><input class="form-control" type="text" value="<%=equipment.verified%>" name="equipment[verified]" /></td>
+                        </tr>
+                        <% } %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="alert alert-info my-3" role="alert">
+                <b>Note:</b> When adding features or specifications, if you do not see your entry
+                after adding it,
+                please refresh your browser.
+              </div>
+              <div class="card">
+                <div class="card-header" role="tab" id="collapse02_header">
+                  <h5>
+                    <a class="collapsed" data-toggle="collapse" href="#" data-target="#collapse02" aria-expanded="false" aria-controls="collapse02">
+                      Specifications
+                    </a>
+                    <a class="btn btn-outline-info" href="/equipment/<%=equipment._id%>/specifications/new"><i class="far fa-edit"></i> Edit Specifications</a>
+                  </h5>
+                </div>
+                <div id="collapse02" class="collapse show" role="tabpanel" aria-labelledby="collapse02_header" data-parent="#accordion01">
+                  <div class="card-body">
+                    <table class="shop_attributes">
+                      <tbody>
+
+                        <% if( equipment.specifications.length> 0) { %>
+                        <%equipment.specifications.forEach(function(specification){%>
+                        <tr class="d-flex">
+                          <th class="col-sm-3" scope="row">
+                            <%=specification.name%>:
+                          </th>
+                          <td class="col-sm-9">
+                            <%=specification.value%>
+                            <%=specification.unit%>
+                          </td>
+                        </tr>
+                        <% }) %>
+                        <% } %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header" role="tab" id="collapse03_header">
+                  <h5>
+                    <a class="collapsed" data-toggle="collapse" data-target="#collapse03" href="#" aria-expanded="false" aria-controls="collapse03">
+                      Features
+                    </a>
+                    <a class="btn btn-outline-info" href="/equipment/<%=equipment._id%>/features/new"><i class="far fa-edit"></i>
+                      Edit Features</a>
+                  </h5>
+                </div>
+                <div id="collapse03" class="collapse show" role="tabpanel" aria-labelledby="collapse03_header" data-parent="#accordion01">
+                  <div class="card-body">
+                    <table class="shop_attributes">
+                      <tbody>
+
+                        <% if( equipment.features.length> 0) { %>
+                        <%equipment.features.forEach(function(feature){%>
+                        <tr class="d-flex">
+                          <th class="col-sm-3 d-none d-sm-table-cell" scope="row">
+                            <i class="fas fa-caret-right"></i>
+                          </th>
+                          <td class="col-sm-9" style="white-space: pre-line">
+                            <%=feature.text%>
+                          </td>
+                        </tr>
+                        <% }) %>
+                        <% } %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="my-3 mt-5">
+
+              <button type='submit' class="btn btn-maincolor mr-2"><i class="fas fa-save"></i>
+                Save</button>
+              <a class="btn btn-darkgrey  delete-form mr-2" href="/equipment/<%=equipment._id%>"><i class="fas fa-arrow-circle-left"></i> Back</a>
+
+              <form class="" action="/equipment/<%=equipment._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-danger"><i class="fas fa-trash-alt"></i>
+                  Delete Equipment</button>
+              </form>
+            </div>
+          </form>
+
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<% include ../partials/footer %>

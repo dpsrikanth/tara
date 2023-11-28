@@ -1,0 +1,652 @@
+<% include ../partials/header %>
+    <div class="container-fluid mt-3">
+        <div class="row">
+            <div class="col-md-2 pl-4 mainSearch">
+                <h3>Filters </h3>
+            </div>
+<div class="col-md-6 mainSearch">
+<div class="row">
+            <div class="col-md-10 col-10">
+                <div id="searchWrapper" style="position: relative;" class="widget widget_search pl-0 ml-0">
+
+
+                    <label for="search-form-widget">
+                        <span class="screen-reader-text">Search for:</span>
+                    </label>
+                    <input type="search" autocomplete="off" onkeyup="handleSearchChange(this)" id="search-form-widget"
+                        class="search-field" placeholder="Search" name="search">
+                    <button onclick="submitFinalSearch()" type="submit" class="search-submit">
+                        <span class="screen-reader-text">Search</span>
+                    </button>
+
+
+                </div>
+
+            </div>
+            <div class="col-md-2 col-2 pt-2 pl-0">
+                <a tabindex="0" class="mt-1" role="button" data-toggle="popover" title="Equipment Search"
+                    data-content="Multiple search terms may be used separated by a comma. The results that are returned include equipment that contains any of the search terms listed. It is equivalent to an 'OR' search."><i
+                        class="fas fa-info-circle"></i></a>
+            </div>
+</div>
+</div>
+            <div id="divBtns" class="col-md-4 text-right pr-5">
+                <span onclick="handleCompare()" href="">
+                    <button type="button" class="btn btn-gradient medium-btn">Compare
+                        <span></span></button>
+                </span>
+<a tabindex="0" class="mt-1" role="button" data-toggle="popover" title="Compare" data-content="Select Compare on two equipment items, then click the Compare button to view selected info side by side"><i class="fas fa-info-circle"></i></a>
+                <% if(currentUser){ %>
+
+                    <a class="btn btn-gradient medium-btn ml-2 mr-2"
+                        href="/equipment/favourites/<%= currentUser._id %>"> Favorites
+                    </a>
+                    <%} %>
+                        <!-- <% if(currentUser && currentUser.status==='approved' &&currentUser.userType=='memsa' ||currentUser &&
+                    currentUser.isAdmin==true) { %>
+
+                    <a class="btn btn-gradient medium-btn" href="/equipment/favourites"> Favourites
+                    </a>
+
+                    <% } %> -->
+                        <% if(currentUser && currentUser.status==='approved' && (currentUser.userType=='memsa' || currentUser && currentUser.isAdmin==true) ) { %>
+
+                            <a class="btn btn-gradient medium-btn ml-2 mr-2" href="/equipment/new"> Add
+                                Equipment
+                            </a>
+
+                            <% } %>
+
+            </div>
+        </div>
+
+<!-- Mobile View -->
+ <div class="row">
+            
+<div class="col-md-6 mobileSearch">
+<div class="row">
+            <div class="col-md-10 col-10">
+                <div id="searchWrapper" style="position: relative;" class="widget widget_search pl-0 ml-0">
+
+
+                    <label for="search-form-widget">
+                        <span class="screen-reader-text">Search for:</span>
+                    </label>
+                    <input type="search" autocomplete="off" onkeyup="handleSearchChange(this)" id="search-form-widget"
+                        class="search-field" placeholder="Search" name="search">
+                    <button onclick="submitFinalSearch()" type="submit" class="search-submit">
+                        <span class="screen-reader-text">Search</span>
+                    </button>
+
+
+                </div>
+
+            </div>
+            <div class="col-md-2 col-2 pt-2 pl-0">
+                <a tabindex="0" class="mt-1" role="button" data-toggle="popover" title="Equipment Search"
+                    data-content="Multiple search terms may be used separated by a comma. The results that are returned include equipment that contains any of the search terms listed. It is equivalent to an 'OR' search."><i
+                        class="fas fa-info-circle"></i></a>
+            </div>
+</div>
+</div>
+            
+<div class="col-md-2 pl-4 mobileSearch">
+                <h3>Filters </h3>
+            </div>
+        </div>
+        <div class="clear mb-3 "></div>
+        <div class="row">
+
+            <div class="col-md-2">
+                <div class="accordion">
+                    <div><button onclick="handleApplyFilters()" class="btn btn-maincolor2 mr-2">Apply </button>
+                        <button onclick="clearAllChecks()" class="btn btn-darkgrey">Clear </button>
+                    </div>
+
+                    <ul class="accordion__list">
+                        <li class="accordion__item">
+                            <div class="accordion__itemTitleWrap">
+                                <h3 class="accordion__itemTitle">Mining Type</h3>
+                                <div class="accordion__itemIconWrap"><svg viewBox="0 0 24 24">
+                                        <polyline fill="none" points="21,8.5 12,17.5 3,8.5 " stroke="#000"
+                                            stroke-miterlimit="10" stroke-width="2" />
+                                    </svg></div>
+                            </div>
+                            <div class="accordion__itemContent" id="_miningType">
+                                <ul>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_type_surface" onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningType.includes('Surface Mining') ? "checked" : "" %> />
+                                            <label class="form-check-label" for="filter_mining_type_surface">Surface Mining</label>
+                                        </div>
+
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_type_underground"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningType.includes('Underground Mining') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_type_underground">Underground Mining</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_type_mineral_processing"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningType.includes('Mineral Processing and Beneficiation') ? "checked" : "" %>
+                                            />
+                                            <label class="form-check-label"
+                                                for="filter_mining_type_mineral_processing">Mineral Processing and Beneficiation</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="accordion__item">
+                            <div class="accordion__itemTitleWrap">
+                                <h3 class="accordion__itemTitle">Mineral</h3>
+                                <div class="accordion__itemIconWrap"><svg viewBox="0 0 24 24">
+                                        <polyline fill="none" points="21,8.5 12,17.5 3,8.5 " stroke="#000"
+                                            stroke-miterlimit="10" stroke-width="2" />
+                                    </svg></div>
+                            </div>
+                            <div class="accordion__itemContent"  id="_mineral">
+                                <ul>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="filter_mineral_gold"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.mineral.includes('Gold & Platinum') ? "checked" : "" %> />
+                                            <label class="form-check-label" for="filter_mineral_gold">Gold & Platinum</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="filter_mineral_coal"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.mineral.includes('Coal') ? "checked" : "" %>>
+                                            <label class="form-check-label" for="filter_mineral_coal">Coal</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="filter_mineral_platinum"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.mineral.includes('Diamonds') ? "checked" : "" %>>
+                                            <label class="form-check-label"
+                                                for="filter_mineral_platinum">Diamonds</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mineral_base_metal" onchange="onChangeFilterChecks(this)"
+                                                <%=filters.mineral? (filters.mineral.includes('Base Metals')? "checked" : "" ) : "" %>>
+                                            <label class="form-check-label" for="filter_mineral_base_metal">Base
+                                                Metals</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="filter_mineral_other"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.mineral.includes('Other') ? "checked" : "" %>>
+                                            <label class="form-check-label" for="filter_mineral_other">Other</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="accordion__item">
+                            <div class="accordion__itemTitleWrap">
+                                <h3 class="accordion__itemTitle">Reef Type</h3>
+                                <div class="accordion__itemIconWrap"><svg viewBox="0 0 24 24">
+                                        <polyline fill="none" points="21,8.5 12,17.5 3,8.5 " stroke="#000"
+                                            stroke-miterlimit="10" stroke-width="2" />
+                                    </svg></div>
+                            </div>
+                            <div class="accordion__itemContent" id="_reefType">
+                                <ul>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_reef_type_massive" onchange="onChangeFilterChecks(this)"
+                                                <%=filters.reefType? (filters.reefType.includes('Massive') ? "checked":"") : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_reef_type_massive">Massive</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="filter_reef_type_narrow"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.reefType?filters.reefType.includes('Narrow') ? "checked":"" : "" %>>
+                                            <label class="form-check-label" for="filter_reef_type_narrow">Narrow</label>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </li>
+                        <li class="accordion__item">
+                            <div class="accordion__itemTitleWrap">
+                                <h3 class="accordion__itemTitle">Mining Method</h3>
+                                <div class="accordion__itemIconWrap"><svg viewBox="0 0 24 24">
+                                        <polyline fill="none" points="21,8.5 12,17.5 3,8.5 " stroke="#000"
+                                            stroke-miterlimit="10" stroke-width="2" />
+                                    </svg></div>
+                            </div>
+                            <div class="accordion__itemContent"  id="_miningMethod">
+                                <ul>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_method_conventional"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningMethod.includes('Conventional') ? "checked" : "" %> />
+
+                                            <label class="form-check-label"
+                                                for="filter_mining_method_conventional">Conventional</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_method_hybrid" onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningMethod.includes('Hybrid') ? "checked" : "" %> />
+
+                                            <label class="form-check-label"
+                                                for="filter_mining_method_hybrid">Hybrid</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_method_mechanised"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningMethod.includes('Mechanised') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_method_mechanised">Mechanised</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_method_autonomous"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningMethod.includes('Autonomous') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_method_autonomous">Autonomous</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="accordion__item">
+                            <div class="accordion__itemTitleWrap">
+                                <h3 class="accordion__itemTitle">Mine Development</h3>
+                                <div class="accordion__itemIconWrap"><svg viewBox="0 0 24 24">
+                                        <polyline fill="none" points="21,8.5 12,17.5 3,8.5 " stroke="#000"
+                                            stroke-miterlimit="10" stroke-width="2" />
+                                    </svg></div>
+                            </div>
+                            <div class="accordion__itemContent" id="_miningCycle">
+                                <ul>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_cycle_Prospecting"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningCycle.includes('Prospecting') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_cycle_Prospecting">Prospecting</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_cycle_shaft_sinking"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningCycle.includes('Shaft Sinking') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_cycle_shaft_sinking">Shaft Sinking</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_cycle_access_development"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningCycle.includes('Access Development') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_cycle_access_development">Access Development</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_cycle_development"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningCycle.includes('Development') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_cycle_development">Development</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_cycle_stopping" onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningCycle.includes('Stoping') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_cycle_stopping">Stoping</label>
+                                        </div>
+                                    </li>
+
+                                    <!--<li>
+<div class="form-check">
+<input type="checkbox" class="form-check-input" id="All">
+<label class="form-check-label" for="All">All</label>
+</div>
+</li>-->
+                                </ul>
+
+                            </div>
+                        </li>
+                        <li class="accordion__item">
+                            <div class="accordion__itemTitleWrap">
+                                <h3 class="accordion__itemTitle">Mining Activity</h3>
+                                <div class="accordion__itemIconWrap"><svg viewBox="0 0 24 24">
+                                        <polyline fill="none" points="21,8.5 12,17.5 3,8.5 " stroke="#000"
+                                            stroke-miterlimit="10" stroke-width="2" />
+                                    </svg></div>
+                            </div>
+                            <div class="accordion__itemContent"  id="_miningActivity">
+                                <ul>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_activity_drilling"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningActivity.includes('Drilling') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_activity_drilling">Drilling</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_activity_blasting"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningActivity.includes('Blasting') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_activity_blasting">Blasting</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_activity_cleaning"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningActivity.includes('Cleaning') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_activity_cleaning">Cleaning</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_mining_activity_supporting"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.miningActivity.includes('Supporting') ? "checked" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_mining_activity_supporting">Supporting</label>
+                                        </div>
+                                    </li>
+
+                                    <!--<li>
+<div class="form-check">
+<input type="checkbox" class="form-check-input" id="All">
+<label class="form-check-label" for="All">All</label>
+</div>
+</li>-->
+                                </ul>
+
+                            </div>
+                        </li>
+
+                        <li class="accordion__item">
+                            <div class="accordion__itemTitleWrap">
+                                <h3 class="accordion__itemTitle">Energy Source</h3>
+                                <div class="accordion__itemIconWrap"><svg viewBox="0 0 24 24">
+                                        <polyline fill="none" points="21,8.5 12,17.5 3,8.5 " stroke="#000"
+                                            stroke-miterlimit="10" stroke-width="2" />
+                                    </svg></div>
+                            </div>
+                            <div class="accordion__itemContent" id="_energySource">
+                                <ul>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_energy_source_pneumatic"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.energySource ? filters.energySource.includes('Pneumatic') ? "checked":"" : "" %>
+                                            />
+                                            <label class="form-check-label"
+                                                for="filter_energy_source_pneumatic">Pneumatic</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_energy_source_water_hydraulic"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.energySource?filters.energySource.includes('Water Hydraulic') ? "checked" :"": "" %>
+                                            />
+                                            <label class="form-check-label"
+                                                for="filter_energy_source_water_hydraulic">Water Hydraulic</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_energy_source_electric_ac"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.energySource?filters.energySource.includes('Electric AC') ? "checked":"" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_energy_source_electric_ac">Electric AC</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_energy_source_diesel_electro_hydraulic"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.energySource?filters.energySource.includes('Diesel Electro-hydraulic') ? "checked":"" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_energy_source_diesel_electro_hydraulic">Diesel Electro-hydraulic</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_energy_source_battery" onchange="onChangeFilterChecks(this)"
+                                                <%=filters.energySource?filters.energySource.includes('Battery') ? "checked" :"": "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_energy_source_battery">Battery</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_energy_source_fuel_cell"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.energySource?filters.energySource.includes('Fuel Cell') ? "checked":"" : "" %> />
+                                            <label class="form-check-label" for="filter_energy_source_fuel_cell">Fuel
+                                                Cell</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="accordion__item">
+                            <div class="accordion__itemTitleWrap">
+                                <h3 class="accordion__itemTitle">Logistics & Materials Handling</h3>
+                                <div class="accordion__itemIconWrap"><svg viewBox="0 0 24 24">
+                                        <polyline fill="none" points="21,8.5 12,17.5 3,8.5 " stroke="#000"
+                                            stroke-miterlimit="10" stroke-width="2" />
+                                    </svg></div>
+                            </div>
+                            <div class="accordion__itemContent" id="_LogisticsAndMaterials">
+                                <ul>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_logistics_pipe_services"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.LogisticsAndMaterials?filters.LogisticsAndMaterials.includes('Pipe Services') ? "checked":"" : "" %>
+                                            />
+                                            <label class="form-check-label" for="filter_logistics_pipe_services">Pipe Services</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_logistics_transport" onchange="onChangeFilterChecks(this)"
+                                                <%=filters.LogisticsAndMaterials?filters.LogisticsAndMaterials.includes('Transport') ? "checked":"" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_logistics_transport">Transport</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_logistics_tramming_and_rock_handling"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.LogisticsAndMaterials?filters.LogisticsAndMaterials.includes('Tramming & Rock Handling') ? "checked":""  : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_logistics_tramming_and_rock_handling">Tramming & Rock Handling</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="accordion__item">
+                            <div class="accordion__itemTitleWrap">
+                                <h3 class="accordion__itemTitle">IT & Comms</h3>
+                                <div class="accordion__itemIconWrap"><svg viewBox="0 0 24 24">
+                                        <polyline fill="none" points="21,8.5 12,17.5 3,8.5 " stroke="#000"
+                                            stroke-miterlimit="10" stroke-width="2" />
+                                    </svg></div>
+                            </div>
+                            <div class="accordion__itemContent" id="_ITComms">
+                                <ul>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_it_and_comms_sensing" onchange="onChangeFilterChecks(this)"
+                                                <%=filters.ITComms?filters.ITComms.includes('Sensing') ? "checked":"" : "" %>
+                                            />
+                                            <label class="form-check-label"
+                                                for="filter_it_and_comms_sensing">Sensing</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_it_and_comms_controls" onchange="onChangeFilterChecks(this)"
+                                                <%=filters.ITComms?filters.ITComms.includes('Controls') ? "checked":"" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_it_and_comms_controls">Controls</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_it_and_comms_communications"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.ITComms?filters.ITComms.includes('Communications') ? "checked":"" : "" %> />
+                                            <label class="form-check-label"
+                                                for="filter_it_and_comms_communications">Communications</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_it_and_comms_data_integration"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.ITComms?filters.ITComms.includes('Data Integration') ? "checked":"" : "" %>
+                                            />
+                                            <label class="form-check-label"
+                                                for="filter_it_and_comms_data_integration">Data Integration</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_it_and_comms_data_analysis"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.ITComms?filters.ITComms.includes('Data Analysis') ? "checked" :"" : "" %> />
+                                            <label class="form-check-label" for="filter_it_and_comms_data_analysis">Data Analysis</label>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input"
+                                                id="filter_it_and_comms_management_systems"
+                                                onchange="onChangeFilterChecks(this)"
+                                                <%=filters.ITComms?filters.ITComms.includes('Management Systems') ? "checked" : "":"" %> />
+                                            <label class="form-check-label"
+                                                for="filter_it_and_comms_management_systems">Management Systems</label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <div><button onclick="handleApplyFilters()" class="btn btn-maincolor2 mr-2">Apply </button>
+                        <button onclick="clearAllChecks()" class="btn btn-darkgrey">Clear </button>
+                    </div>
+                </div>
+            </div>
+            <form id="newSearchForm" action="/equipment/home/search" method="GET" style="display: none;">
+                <input name="search" id="searchNext" value="" />
+            </form>
+            <form id="filterForm" action="/equipment" method="GET" style="display: none;">
+                <input id="miningMethodFilter" class="form-control" type="hidden" name="miningMethod"
+                    placeholder="miningMethod" aria-label="Filter">
+                <input id="mineralFilter" class="form-control" type="hidden" name="mineral" placeholder="mineral"
+                    aria-label="Filter">
+                <input id="miningActivityFilter" class="form-control" type="hidden" name="miningActivity"
+                    placeholder="miningActivity" aria-label="Filter">
+                <input id="miningCycleFilter" class="form-control" type="hidden" name="miningCycle"
+                    placeholder="miningCycle" aria-label="Filter">
+                <input id="miningTypeFilter" class="form-control" type="hidden" name="miningType"
+                    placeholder="miningType" aria-label="Filter">
+
+
+                <input id="energySourceFilter" class="form-control" type="hidden" name="energySource" placeholder="energySource"  aria-label="energySource">
+                <input id="LogisticsAndMaterialsFilter" class="form-control" type="hidden" name="LogisticsAndMaterials" placeholder="LogisticsAndMaterials" aria-label="Filter">
+                <input id="ITCommsFilter" class="form-control" type="hidden" name="ITComms"
+                    placeholder="ITComms" aria-label="Filter">
+                <input id="reefTypeFilter" class="form-control" type="hidden" name="reefType"
+                    placeholder="reefType" aria-label="Filter">
+            </form>
+
+            <form id="compareForm" action="/equipment/compare" method="POST" style="display: none;">
+                <input name="id" id="id" value="[]" />
+            </form>
+
+
+            <!-- products list -->
+
+            <% include ./equipment_cards.partial.ejs %>
+        </div>        
+
+    </div>
+
+    <% include ../partials/footer %>
