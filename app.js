@@ -33,10 +33,7 @@ const moment = require("moment");
 const {
   db: { host, port, name },
 } = config;
-//const connectionString = `mongodb+srv://shorturl501:JN5CVGNu5HXW4RR6@test.ts665.mongodb.net/tara?retryWrites=true&w=majority`;
-//const connectionString =`mongodb+srv://doadmin:8es07134OrC5d9tS@taradb-mongodb-nyc1-40904-222ca38a.mongo.ondigitalocean.com/admin?authMechanism=DEFAULT`;
-const connectionString=`mongodb+srv://doadmin:6bP1K958w7S4CFd2@db-mongodb-blr1-34634-tara-3262fe18.mongo.ondigitalocean.com/admin?tls=true&authSource=admin`;
-//const connectionString = `mongodb://127.0.0.1:27017/taradb?retryWrites=true&w=majority`;
+const connectionString="mongodb://localhost:27017/admin?retryWrites=true&w=majority";
 try {
   mongoose
     .connect(connectionString)
@@ -87,6 +84,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+
 app.use("/", indexRoutes);
 app.use("/equipment", equipmentRoutes);
 app.use("/equipment/:id/features", featuresRoutes);
@@ -107,6 +105,7 @@ app.use('/trl', trl)
 app.use('/mandela', mandela)
 
 app.use("/news",newsitem1)
+
 app.listen(config.app.port, config.app.host, function () {
   console.log(`Server is listening on port: ${config.app.port}`);
 });

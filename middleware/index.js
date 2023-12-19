@@ -210,7 +210,7 @@ middlewareObj.isApprovedMemsaUser = function (req, res, next) {
   if (req.isAuthenticated()) {
     //console.log("IsAuth1");
     //console.log(req.user);
-    if (req.user && req.user.status === "approved" && (req.user.userType == 'memsa' || req.user.isAdmin)) {
+    if (req.user && req.user.status === "approved" && (req.user.userType == 'memsa' || req.user.isAdmin) ) {
       return next();
     } else {
       req.flash(

@@ -69,7 +69,7 @@ router.post("/forgot", function (req, res, next) {
       },
       function (token, done) {
         //console.log(req.body.email);
-        User.findOne({ email: req.body.email }, function (err, user) {
+        User.findOne({ email: req.body.email }, function (err, user) {            
           if (!user) {
             //console.log(err);      
             req.flash(
@@ -120,8 +120,7 @@ router.post("/forgot", function (req, res, next) {
               `An email has been sent to ${user.email} with further instructions`
             );
             return res.redirect("/users/forgot");
-          }
-         
+          }         
           //done(err, "done");
         });
       },
@@ -371,6 +370,7 @@ router.get(
 router.put(
   "/:id",
   async function (req, res) {
+    
     const { error } = validateUpdatedUserData(req.body);
     if (error) {
       //console.log(error);
@@ -390,6 +390,7 @@ router.put(
       html: `<p>Details for ${req.body.firstname} ${req.body.lastname}, have been updated.</p>`,
     };
     try {
+      //console.log(req);
       const urlreferrer=req.headers.referer;
       User.updateOne(
         { _id: req.params.id },
@@ -411,7 +412,7 @@ router.put(
               }
               else
               {
-              return res.status(400).redirect("/users/" + req.params.id);
+                return res.status(400).redirect("/users/" + req.params.id);
               }              
             } else {
               req.flash(
@@ -424,7 +425,7 @@ router.put(
               }
               else
               {
-              return res.status(200).redirect("/users/" + req.params.id+"/edit");
+                return res.status(200).redirect("/users/" + req.params.id+"/edit");
               }              
               //res.send({ status: "Success", message: "User Details Updated Successfully" });
             }

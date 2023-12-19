@@ -54,6 +54,7 @@ async function searchEquipment(searchString) {
           req.flash("error", "Equipment search encountered an error");
           return res.redirect("/equipment");
         });
+        //console.log(equipment);
       if (equipment && equipment.length > 0) {
         equipment.forEach((equip) => {
           equipmentArray.push({ equipment: equip, score: 1 });
@@ -64,7 +65,7 @@ async function searchEquipment(searchString) {
 
   const regex = new RegExp(escapeRegex(searchString), "gi");
   // Search for the regular terms in Equipment
-  let equipment = await Equipment.find(
+  let equipment = await Equipment.find(    
     { $text: { $search: regex } },
     { score: { $meta: "textScore" } }
   )
@@ -329,8 +330,7 @@ router.get("/", async function (req, res) {
   if (req.query.reefType) {
     filters.reefType = { $in: req.query.reefType.split(",") };
   }
-  //console.log("Filters");
-  //console.log(filters);
+  //console.log("Filters" , filters);  
   [equipment, equipmentCount] = await equipmentService.getEquipments(
     pageNumber,
     pageSize,
@@ -338,14 +338,14 @@ router.get("/", async function (req, res) {
     filters
   );
 
-  equipment = await equipmentService.addFavoriteField(equipment, req);
-  // console.log("LISSSSST", equipment);
+  equipment = await equipmentService.addFavoriteField(equipment, req);  
   let noMatch;
   if (equipment.length > 0) {
     noMatch = null;
   } else {
     noMatch = "Sorry, there are no results for that query, please try again.";
   }
+  //console.log("LISSSSST", pageNumber, noMatch,equipmentCount,pageSize,equipment);
   res.render("equipment/index", {
     equipment: equipment,
     pageType: pageType,
@@ -661,12 +661,13 @@ router.get("/:id", async function (req, res) {
         {
           var queryStringActivity =  foundEquipment.mineActivity.split(';');
           var queryStringMethod =  foundEquipment.miningMethod.split(';');
-       
           relatedEquipment = await Equipment.find({ $or:[{"mineActivity" : { $in : queryStringActivity}},{"miningMethod" : { $in : queryStringMethod}}]}).limit(3).populate("features images datasheets specifications").then(res => {return res}).catch(err => {
-          console.log(err)
-          return [{"error" : err}]
-        });
+            console.log(err)
+            return [{"error" : err}]
+          });
         }    
+       
+  
 
         //
 

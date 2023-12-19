@@ -1,25 +1,28 @@
 <% include ../partials/header %>
-<style>
+    <style>
         table td,
         table th {
-    word-break: break-all;
-}
-.smallbuttoncss{    
-    float: right;    
-    position: absolute;
-    top: 0;
-    padding-top: 20px;   
-    right: 02px; 
-    cursor: pointer;
-}
-.smallbuttoncss1{    
-    float: right;    
-    position: absolute;
-    top: 0;
-    padding-top: 20px;    
-    right: 35px; 
-    cursor: pointer;
-}
+            word-break: break-all;
+        }
+
+        .smallbuttoncss {
+            float: right;
+            position: absolute;
+            top: 0;
+            padding-top: 20px;
+            right: 02px;
+            cursor: pointer;
+        }
+
+        .smallbuttoncss1 {
+            float: right;
+            position: absolute;
+            top: 0;
+            padding-top: 20px;
+            right: 35px;
+            cursor: pointer;
+        }
+
         /* .modal-dialog {
   max-width: 100%;
   width: 90% !important;
@@ -34,10 +37,12 @@
         }*/
         .modal-body {
             padding: 20px;
-}
+        }
+
         .modal-header {
             padding: 20px;
         }
+
         .close {
             position: relative;
             right: 0px;
@@ -49,33 +54,38 @@
             opacity: 0.5;
             margin: 0 !important;
         }
-.dateright{        
-    float :left ;
+
+        .dateright {
+            float: left;
             margin-top: 10px;
-    font-size: 10px;
-}
-</style>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-10 col-xl-10 ls ">
-            <div class="">
-                <div class="fw-divider-space divider-xl-80 divider-lg-80 divider-md-40 divider-30"></div>
-                
-                <h2 class="special-heading text-left">
-                    <span class="text-capitalize">
-                        NEWS Items
-                    </span>
-                    <%if(currentUser && currentUser.isAdmin){ %> 
+            font-size: 10px;
+        }
+
+        .content1 {
+            padding: 40px 50px;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-10 ls ">
+                <div class="">
+                    <div class="fw-divider-space divider-xl-80 divider-lg-80 divider-md-40 divider-30"></div>
+
+                    <h2 class="special-heading text-left">
+                        <span class="text-capitalize">
+                            NEWS Items
+                        </span>
+                        <%if(currentUser && currentUser.isAdmin){ %>
                             <div style="float:right"><button type="button" onclick="gotoAddNews()"
                                     class="btn btn-gradient medium-btn">Add NEWS</button></div>
-                    <%}%>
-                </h2>                
-                <div class="fw-divider-space divider-25"></div>
-                
-                <div class="divider-30 hidden-above-lg"></div>   
-                <% if(newsitems) {%>
-                <% newsitems.forEach(function(item){ %>            
-                    <div style="position: relative;height: 100px;border-width: 1px;">
+                            <%}%>
+                    </h2>
+                    <div class="fw-divider-space divider-25"></div>
+
+                    <div class="divider-30 hidden-above-lg"></div>
+                    <% if(newsitems) {%>
+                        <% newsitems.forEach(function(item){ %>
+                            <div style="position: relative;height: 100px;border-width: 1px;">
                                 <div class="card-body content1" style="cursor:pointer;font-weight: bold;"
                                     title="Click here to view the NEWS Content" onclick=ShowContentView('<%=item._id%>')
                                     id="title<%=item._id%>">
@@ -87,60 +97,60 @@
                                                             value="<%=item.newsContent%>" />
                                                 </div>
                                                 <div>
-                        <label class="dateright">Added on : <%=item.editedOn%></label>
+                                                    <label class="dateright">Added on : <%=item.editedOn%></label>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
-                        <%if(currentUser && currentUser.isAdmin){ %>                         
+                                                <%if(currentUser && currentUser.isAdmin){ %>
                                                     <button title="Click here to edit this news item"
                                                         class="smallbuttoncss1 btn"
                                                         style="border: none;background-color: transparent;"
                                                         onclick=editNewsItem('<%=item._id%>')>
                                                         <img style="height: 24px; width: 24px;"
                                                             src="https://img.icons8.com/ios-glyphs/30/47c965/edit--v1.png" />
-                        </button>
-                        <div style="width: 10px;"></div>
+                                                    </button>
+                                                    <div style="width: 10px;"></div>
                                                     <button title="Click here to delete this news item"
                                                         class="smallbuttoncss btn"
                                                         style="border: none;background-color: transparent;"
                                                         onclick=deleteNewsItem('<%=item._id%>')>
                                                         <img style="height: 24px; width: 24px;"
                                                             src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/64/e82e2e/external-delete-miscellaneous-kiranshastry-solid-kiranshastry.png" />
-                        </button>       
-                        <%}%>           
-                    </div>
+                                                    </button>
+                                                    <%}%>
+                                            </div>
                                         </div>
                                 </div>
                             </div>
-                <% }); %>
-                <% }else { %>
-                    No news found.
-                <%} %>
+                            <% }); %>
+                                <% }else { %>
+                                    No news found.
+                                    <%} %>
                                         <div
                                             class="fw-divider-space divider-xl-160 divider-lg-130 divider-md-90 divider-60">
+                                        </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-    </div>
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="idViewNews">
         <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
+            <div class="modal-content">
+                <div class="modal-header">
                     <h6 class="modal-title" id="newsTitle">Modal title</h6>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body"  id="divviewContent">
-          <p>Modal body text goes here.</p>
-        </div>
-        <div class="modal-footer">          
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="divviewContent">
+                    <p>Modal body text goes here.</p>
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-outline-darkgrey" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
-</section>
-<% include ../partials/footer %>
+    </section>
+    <% include ../partials/footer %>
